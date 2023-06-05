@@ -12,8 +12,6 @@ class CreateAgentsTable extends Migration
             $table->bigIncrements('id');
             $table->boolean('published')->default(0)->nullable();
             $table->string('display_name')->nullable();
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
             $table->string('notify_phone')->nullable();
             $table->string('contact_phone')->nullable();
             $table->string('timezone')->nullable();

@@ -43,6 +43,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Client
     Route::delete('clients/destroy', 'ClientController@massDestroy')->name('clients.massDestroy');
+    Route::post('clients/media', 'ClientController@storeMedia')->name('clients.storeMedia');
+    Route::post('clients/ckmedia', 'ClientController@storeCKEditorImages')->name('clients.storeCKEditorImages');
     Route::resource('clients', 'ClientController');
 
     // Post
@@ -50,6 +52,44 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('posts/media', 'PostController@storeMedia')->name('posts.storeMedia');
     Route::post('posts/ckmedia', 'PostController@storeCKEditorImages')->name('posts.storeCKEditorImages');
     Route::resource('posts', 'PostController');
+
+    // Access Token
+    Route::delete('access-tokens/destroy', 'AccessTokenController@massDestroy')->name('access-tokens.massDestroy');
+    Route::resource('access-tokens', 'AccessTokenController');
+
+    // Quote
+    Route::delete('quotes/destroy', 'QuoteController@massDestroy')->name('quotes.massDestroy');
+    Route::resource('quotes', 'QuoteController');
+
+    // Customer
+    Route::delete('customers/destroy', 'CustomerController@massDestroy')->name('customers.massDestroy');
+    Route::resource('customers', 'CustomerController');
+
+    // Disclaimer Group
+    Route::delete('disclaimer-groups/destroy', 'DisclaimerGroupController@massDestroy')->name('disclaimer-groups.massDestroy');
+    Route::resource('disclaimer-groups', 'DisclaimerGroupController');
+
+    // Disclaimer Type
+    Route::delete('disclaimer-types/destroy', 'DisclaimerTypeController@massDestroy')->name('disclaimer-types.massDestroy');
+    Route::post('disclaimer-types/media', 'DisclaimerTypeController@storeMedia')->name('disclaimer-types.storeMedia');
+    Route::post('disclaimer-types/ckmedia', 'DisclaimerTypeController@storeCKEditorImages')->name('disclaimer-types.storeCKEditorImages');
+    Route::resource('disclaimer-types', 'DisclaimerTypeController');
+
+    // Disclaimer Variable
+    Route::delete('disclaimer-variables/destroy', 'DisclaimerVariableController@massDestroy')->name('disclaimer-variables.massDestroy');
+    Route::resource('disclaimer-variables', 'DisclaimerVariableController');
+
+    // Email History
+    Route::delete('email-histories/destroy', 'EmailHistoryController@massDestroy')->name('email-histories.massDestroy');
+    Route::resource('email-histories', 'EmailHistoryController');
+
+    // Keyword
+    Route::delete('keywords/destroy', 'KeywordController@massDestroy')->name('keywords.massDestroy');
+    Route::resource('keywords', 'KeywordController');
+
+    // Lending Officer
+    Route::delete('lending-officers/destroy', 'LendingOfficerController@massDestroy')->name('lending-officers.massDestroy');
+    Route::resource('lending-officers', 'LendingOfficerController');
 
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');

@@ -27,10 +27,8 @@ class Agent extends Model implements HasMedia
 
     protected $fillable = [
         'published',
-        'display_name',
         'user_id',
-        'first_name',
-        'last_name',
+        'display_name',
         'notify_phone',
         'contact_phone',
         'timezone',
@@ -66,9 +64,9 @@ class Agent extends Model implements HasMedia
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
-    public function agentsClients()
+    public function agentClients()
     {
-        return $this->belongsToMany(Client::class);
+        return $this->hasMany(Client::class, 'agent_id', 'id');
     }
 
     public function user()

@@ -17,11 +17,37 @@ class UpdateClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'agents.*' => [
-                'integer',
+            'name' => [
+                'string',
+                'nullable',
             ],
-            'agents' => [
-                'array',
+            'settings' => [
+                'string',
+                'nullable',
+            ],
+            'category' => [
+                'string',
+                'nullable',
+            ],
+            'stub' => [
+                'string',
+                'nullable',
+            ],
+            'muted' => [
+                'string',
+                'nullable',
+            ],
+            'muted_at' => [
+                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
+                'nullable',
+            ],
+            'source' => [
+                'string',
+                'nullable',
+            ],
+            'sub_source' => [
+                'string',
+                'nullable',
             ],
         ];
     }

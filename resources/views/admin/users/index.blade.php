@@ -31,6 +31,9 @@
                         {{ trans('cruds.user.fields.name') }}
                     </th>
                     <th>
+                        {{ trans('cruds.user.fields.phone') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.user.fields.email') }}
                     </th>
                     <th>
@@ -95,6 +98,7 @@
 { data: 'id', name: 'id' },
 { data: 'avatar', name: 'avatar', sortable: false, searchable: false },
 { data: 'name', name: 'name' },
+{ data: 'phone', name: 'phone' },
 { data: 'email', name: 'email' },
 { data: 'roles', name: 'roles.title' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }

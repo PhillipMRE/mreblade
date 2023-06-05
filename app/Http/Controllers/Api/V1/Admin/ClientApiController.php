@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Http\Resources\Admin\ClientResource;
@@ -13,17 +14,22 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ClientApiController extends Controller
 {
+    use MediaUploadingTrait;
+
     public function index()
     {
         abort_if(Gate::denies('client_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ClientResource(Client::with(['user', 'agents'])->get());
+        return new ClientResource(Client::with(['agent'])->get());
     }
 
     public function store(StoreClientRequest $request)
     {
         $client = Client::create($request->all());
-        $client->agents()->sync($request->input('agents', []));
+
+        if ($request->input('photo', false)) {
+            $client->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+        }
 
         return (new ClientResource($client))
             ->response()
@@ -34,13 +40,23 @@ class ClientApiController extends Controller
     {
         abort_if(Gate::denies('client_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ClientResource($client->load(['user', 'agents']));
+        return new ClientResource($client->load(['agent']));
     }
 
     public function update(UpdateClientRequest $request, Client $client)
     {
         $client->update($request->all());
-        $client->agents()->sync($request->input('agents', []));
+
+        if ($request->input('photo', false)) {
+            if (! $client->photo || $request->input('photo') !== $client->photo->file_name) {
+                if ($client->photo) {
+                    $client->photo->delete();
+                }
+                $client->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+            }
+        } elseif ($client->photo) {
+            $client->photo->delete();
+        }
 
         return (new ClientResource($client))
             ->response()

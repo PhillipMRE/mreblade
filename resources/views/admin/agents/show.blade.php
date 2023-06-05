@@ -49,22 +49,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.agent.fields.first_name') }}
-                        </th>
-                        <td>
-                            {{ $agent->first_name }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.agent.fields.last_name') }}
-                        </th>
-                        <td>
-                            {{ $agent->last_name }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.agent.fields.notify_phone') }}
                         </th>
                         <td>
@@ -232,14 +216,14 @@
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
-            <a class="nav-link" href="#agents_clients" role="tab" data-toggle="tab">
+            <a class="nav-link" href="#agent_clients" role="tab" data-toggle="tab">
                 {{ trans('cruds.client.title') }}
             </a>
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="agents_clients">
-            @includeIf('admin.agents.relationships.agentsClients', ['clients' => $agent->agentsClients])
+        <div class="tab-pane" role="tabpanel" id="agent_clients">
+            @includeIf('admin.agents.relationships.agentClients', ['clients' => $agent->agentClients])
         </div>
     </div>
 </div>

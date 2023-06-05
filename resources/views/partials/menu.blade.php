@@ -15,14 +15,26 @@
                 {{ trans('global.dashboard') }}
             </a>
         </li>
-        @can('agent_access')
-            <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.agents.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/agents") || request()->is("admin/agents/*") ? "c-active" : "" }}">
-                    <i class="fa-fw fas fa-users c-sidebar-nav-icon">
+        @can('agent_area_access')
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/agents*") ? "c-show" : "" }}">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="fa-fw far fa-user c-sidebar-nav-icon">
 
                     </i>
-                    {{ trans('cruds.agent.title') }}
+                    {{ trans('cruds.agentArea.title') }}
                 </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @can('agent_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.agents.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/agents") || request()->is("admin/agents/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-users c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.agent.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
             </li>
         @endcan
         @can('client_access')
@@ -35,26 +47,54 @@
                 </a>
             </li>
         @endcan
-        @can('blog_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/posts*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw fas fa-rss c-sidebar-nav-icon">
+        @can('lending_officer_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.lending-officers.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/lending-officers") || request()->is("admin/lending-officers/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-users-cog c-sidebar-nav-icon">
 
                     </i>
-                    {{ trans('cruds.blog.title') }}
+                    {{ trans('cruds.lendingOfficer.title') }}
                 </a>
-                <ul class="c-sidebar-nav-dropdown-items">
-                    @can('post_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.posts.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/posts") || request()->is("admin/posts/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-newspaper c-sidebar-nav-icon">
+            </li>
+        @endcan
+        @can('customer_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.customers.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/customers") || request()->is("admin/customers/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-money-bill c-sidebar-nav-icon">
 
-                                </i>
-                                {{ trans('cruds.post.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
+                    </i>
+                    {{ trans('cruds.customer.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('quote_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.quotes.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/quotes") || request()->is("admin/quotes/*") ? "c-active" : "" }}">
+                    <i class="fa-fw far fa-money-bill-alt c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.quote.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('email_history_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.email-histories.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/email-histories") || request()->is("admin/email-histories/*") ? "c-active" : "" }}">
+                    <i class="fa-fw far fa-envelope-open c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.emailHistory.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('keyword_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.keywords.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/keywords") || request()->is("admin/keywords/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-backspace c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.keyword.title') }}
+                </a>
             </li>
         @endcan
         @can('user_management_access')
@@ -114,6 +154,92 @@
                                 </i>
                                 {{ trans('cruds.userAlert.title') }}
                             </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
+        @can('blog_access')
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/posts*") ? "c-show" : "" }}">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="fa-fw fas fa-rss c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.blog.title') }}
+                </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @can('post_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.posts.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/posts") || request()->is("admin/posts/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-newspaper c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.post.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
+        @can('developer_area_access')
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/access-tokens*") ? "c-show" : "" }} {{ request()->is("admin/*") ? "c-show" : "" }}">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.developerArea.title') }}
+                </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @can('access_token_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.access-tokens.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/access-tokens") || request()->is("admin/access-tokens/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.accessToken.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('disclaimer_access')
+                        <li class="c-sidebar-nav-dropdown {{ request()->is("admin/disclaimer-groups*") ? "c-show" : "" }} {{ request()->is("admin/disclaimer-types*") ? "c-show" : "" }} {{ request()->is("admin/disclaimer-variables*") ? "c-show" : "" }}">
+                            <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.disclaimer.title') }}
+                            </a>
+                            <ul class="c-sidebar-nav-dropdown-items">
+                                @can('disclaimer_group_access')
+                                    <li class="c-sidebar-nav-item">
+                                        <a href="{{ route("admin.disclaimer-groups.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/disclaimer-groups") || request()->is("admin/disclaimer-groups/*") ? "c-active" : "" }}">
+                                            <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                            </i>
+                                            {{ trans('cruds.disclaimerGroup.title') }}
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('disclaimer_type_access')
+                                    <li class="c-sidebar-nav-item">
+                                        <a href="{{ route("admin.disclaimer-types.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/disclaimer-types") || request()->is("admin/disclaimer-types/*") ? "c-active" : "" }}">
+                                            <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                            </i>
+                                            {{ trans('cruds.disclaimerType.title') }}
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('disclaimer_variable_access')
+                                    <li class="c-sidebar-nav-item">
+                                        <a href="{{ route("admin.disclaimer-variables.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/disclaimer-variables") || request()->is("admin/disclaimer-variables/*") ? "c-active" : "" }}">
+                                            <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                            </i>
+                                            {{ trans('cruds.disclaimerVariable.title') }}
+                                        </a>
+                                    </li>
+                                @endcan
+                            </ul>
                         </li>
                     @endcan
                 </ul>

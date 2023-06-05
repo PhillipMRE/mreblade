@@ -48,26 +48,6 @@
                 <span class="help-block">{{ trans('cruds.agent.fields.display_name_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="first_name">{{ trans('cruds.agent.fields.first_name') }}</label>
-                <input class="form-control {{ $errors->has('first_name') ? 'is-invalid' : '' }}" type="text" name="first_name" id="first_name" value="{{ old('first_name', $agent->first_name) }}">
-                @if($errors->has('first_name'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('first_name') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.agent.fields.first_name_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="last_name">{{ trans('cruds.agent.fields.last_name') }}</label>
-                <input class="form-control {{ $errors->has('last_name') ? 'is-invalid' : '' }}" type="text" name="last_name" id="last_name" value="{{ old('last_name', $agent->last_name) }}">
-                @if($errors->has('last_name'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('last_name') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.agent.fields.last_name_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label for="notify_phone">{{ trans('cruds.agent.fields.notify_phone') }}</label>
                 <input class="form-control {{ $errors->has('notify_phone') ? 'is-invalid' : '' }}" type="text" name="notify_phone" id="notify_phone" value="{{ old('notify_phone', $agent->notify_phone) }}">
                 @if($errors->has('notify_phone'))

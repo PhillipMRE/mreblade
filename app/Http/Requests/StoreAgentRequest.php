@@ -21,14 +21,6 @@ class StoreAgentRequest extends FormRequest
                 'string',
                 'nullable',
             ],
-            'first_name' => [
-                'string',
-                'nullable',
-            ],
-            'last_name' => [
-                'string',
-                'nullable',
-            ],
             'notify_phone' => [
                 'string',
                 'nullable',

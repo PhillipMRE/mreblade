@@ -25,20 +25,118 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.client.fields.user') }}
+                            {{ trans('cruds.client.fields.name') }}
                         </th>
                         <td>
-                            {{ $client->user->name ?? '' }}
+                            {{ $client->name }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.client.fields.agents') }}
+                            {{ trans('cruds.client.fields.published') }}
                         </th>
                         <td>
-                            @foreach($client->agents as $key => $agents)
-                                <span class="label label-info">{{ $agents->display_name }}</span>
-                            @endforeach
+                            <input type="checkbox" disabled="disabled" {{ $client->published ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.archived') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $client->archived ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.claimed') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $client->claimed ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.photo') }}
+                        </th>
+                        <td>
+                            @if($client->photo)
+                                <a href="{{ $client->photo->getUrl() }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ $client->photo->getUrl('thumb') }}">
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.agent') }}
+                        </th>
+                        <td>
+                            {{ $client->agent->display_name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.settings') }}
+                        </th>
+                        <td>
+                            {{ $client->settings }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.category') }}
+                        </th>
+                        <td>
+                            {{ $client->category }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.stub') }}
+                        </th>
+                        <td>
+                            {{ $client->stub }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.muted') }}
+                        </th>
+                        <td>
+                            {{ $client->muted }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.muted_at') }}
+                        </th>
+                        <td>
+                            {{ $client->muted_at }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.source') }}
+                        </th>
+                        <td>
+                            {{ $client->source }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.sub_source') }}
+                        </th>
+                        <td>
+                            {{ $client->sub_source }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.suspended') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $client->suspended ? 'checked' : '' }}>
                         </td>
                     </tr>
                 </tbody>

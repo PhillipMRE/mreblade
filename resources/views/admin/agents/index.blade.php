@@ -28,9 +28,6 @@
                         {{ trans('cruds.agent.fields.published') }}
                     </th>
                     <th>
-                        {{ trans('cruds.agent.fields.first_name') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.agent.fields.contact_phone') }}
                     </th>
                     <th>
@@ -97,7 +94,6 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'published', name: 'published' },
-{ data: 'first_name', name: 'first_name' },
 { data: 'contact_phone', name: 'contact_phone' },
 { data: 'template', name: 'template' },
 { data: 'is_vetted', name: 'is_vetted' },

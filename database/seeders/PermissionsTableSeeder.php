@@ -164,6 +164,198 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 39,
+                'title' => 'developer_area_access',
+            ],
+            [
+                'id'    => 40,
+                'title' => 'access_token_create',
+            ],
+            [
+                'id'    => 41,
+                'title' => 'access_token_edit',
+            ],
+            [
+                'id'    => 42,
+                'title' => 'access_token_show',
+            ],
+            [
+                'id'    => 43,
+                'title' => 'access_token_delete',
+            ],
+            [
+                'id'    => 44,
+                'title' => 'access_token_access',
+            ],
+            [
+                'id'    => 45,
+                'title' => 'agent_area_access',
+            ],
+            [
+                'id'    => 46,
+                'title' => 'quote_create',
+            ],
+            [
+                'id'    => 47,
+                'title' => 'quote_edit',
+            ],
+            [
+                'id'    => 48,
+                'title' => 'quote_show',
+            ],
+            [
+                'id'    => 49,
+                'title' => 'quote_delete',
+            ],
+            [
+                'id'    => 50,
+                'title' => 'quote_access',
+            ],
+            [
+                'id'    => 51,
+                'title' => 'customer_create',
+            ],
+            [
+                'id'    => 52,
+                'title' => 'customer_edit',
+            ],
+            [
+                'id'    => 53,
+                'title' => 'customer_show',
+            ],
+            [
+                'id'    => 54,
+                'title' => 'customer_delete',
+            ],
+            [
+                'id'    => 55,
+                'title' => 'customer_access',
+            ],
+            [
+                'id'    => 56,
+                'title' => 'disclaimer_group_create',
+            ],
+            [
+                'id'    => 57,
+                'title' => 'disclaimer_group_edit',
+            ],
+            [
+                'id'    => 58,
+                'title' => 'disclaimer_group_show',
+            ],
+            [
+                'id'    => 59,
+                'title' => 'disclaimer_group_delete',
+            ],
+            [
+                'id'    => 60,
+                'title' => 'disclaimer_group_access',
+            ],
+            [
+                'id'    => 61,
+                'title' => 'disclaimer_type_create',
+            ],
+            [
+                'id'    => 62,
+                'title' => 'disclaimer_type_edit',
+            ],
+            [
+                'id'    => 63,
+                'title' => 'disclaimer_type_show',
+            ],
+            [
+                'id'    => 64,
+                'title' => 'disclaimer_type_delete',
+            ],
+            [
+                'id'    => 65,
+                'title' => 'disclaimer_type_access',
+            ],
+            [
+                'id'    => 66,
+                'title' => 'disclaimer_variable_create',
+            ],
+            [
+                'id'    => 67,
+                'title' => 'disclaimer_variable_edit',
+            ],
+            [
+                'id'    => 68,
+                'title' => 'disclaimer_variable_show',
+            ],
+            [
+                'id'    => 69,
+                'title' => 'disclaimer_variable_delete',
+            ],
+            [
+                'id'    => 70,
+                'title' => 'disclaimer_variable_access',
+            ],
+            [
+                'id'    => 71,
+                'title' => 'disclaimer_access',
+            ],
+            [
+                'id'    => 72,
+                'title' => 'email_history_create',
+            ],
+            [
+                'id'    => 73,
+                'title' => 'email_history_edit',
+            ],
+            [
+                'id'    => 74,
+                'title' => 'email_history_show',
+            ],
+            [
+                'id'    => 75,
+                'title' => 'email_history_delete',
+            ],
+            [
+                'id'    => 76,
+                'title' => 'email_history_access',
+            ],
+            [
+                'id'    => 77,
+                'title' => 'keyword_create',
+            ],
+            [
+                'id'    => 78,
+                'title' => 'keyword_edit',
+            ],
+            [
+                'id'    => 79,
+                'title' => 'keyword_show',
+            ],
+            [
+                'id'    => 80,
+                'title' => 'keyword_delete',
+            ],
+            [
+                'id'    => 81,
+                'title' => 'keyword_access',
+            ],
+            [
+                'id'    => 82,
+                'title' => 'lending_officer_create',
+            ],
+            [
+                'id'    => 83,
+                'title' => 'lending_officer_edit',
+            ],
+            [
+                'id'    => 84,
+                'title' => 'lending_officer_show',
+            ],
+            [
+                'id'    => 85,
+                'title' => 'lending_officer_delete',
+            ],
+            [
+                'id'    => 86,
+                'title' => 'lending_officer_access',
+            ],
+            [
+                'id'    => 87,
                 'title' => 'profile_password_edit',
             ],
         ];

@@ -51,9 +51,6 @@ class AgentsController extends Controller
             $table->editColumn('published', function ($row) {
                 return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
             });
-            $table->editColumn('first_name', function ($row) {
-                return $row->first_name ? $row->first_name : '';
-            });
             $table->editColumn('contact_phone', function ($row) {
                 return $row->contact_phone ? $row->contact_phone : '';
             });
@@ -114,7 +111,7 @@ class AgentsController extends Controller
     {
         abort_if(Gate::denies('agent_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $agent->load('user', 'agentsClients');
+        $agent->load('user', 'agentClients');
 
         return view('admin.agents.show', compact('agent'));
     }
