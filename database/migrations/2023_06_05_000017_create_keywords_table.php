@@ -18,6 +18,10 @@ class CreateKeywordsTable extends Migration
             $table->string('shortcode')->nullable();
             $table->longText('listing_settings')->nullable();
             $table->string('sponsor_only')->nullable();
+            $table->boolean('show_solds')->default(0)->nullable();
+            $table->boolean('use_version_5')->default(0)->nullable();
+            $table->boolean('active')->default(0)->nullable();
+            $table->boolean('listhub')->default(0)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

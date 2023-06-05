@@ -47,16 +47,6 @@
                 </a>
             </li>
         @endcan
-        @can('lending_officer_access')
-            <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.lending-officers.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/lending-officers") || request()->is("admin/lending-officers/*") ? "c-active" : "" }}">
-                    <i class="fa-fw fas fa-users-cog c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.lendingOfficer.title') }}
-                </a>
-            </li>
-        @endcan
         @can('customer_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.customers.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/customers") || request()->is("admin/customers/*") ? "c-active" : "" }}">
@@ -87,14 +77,66 @@
                 </a>
             </li>
         @endcan
-        @can('keyword_access')
+        @can('lending_officer_access')
             <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.keywords.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/keywords") || request()->is("admin/keywords/*") ? "c-active" : "" }}">
+                <a href="{{ route("admin.lending-officers.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/lending-officers") || request()->is("admin/lending-officers/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-users-cog c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.lendingOfficer.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('listing_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.listings.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/listings") || request()->is("admin/listings/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-home c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.listing.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('keyword_area_access')
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/keywords*") ? "c-show" : "" }} {{ request()->is("admin/keyword-apps*") ? "c-show" : "" }} {{ request()->is("admin/keyword-prerenders*") ? "c-show" : "" }}">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-backspace c-sidebar-nav-icon">
 
                     </i>
-                    {{ trans('cruds.keyword.title') }}
+                    {{ trans('cruds.keywordArea.title') }}
                 </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @can('keyword_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.keywords.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/keywords") || request()->is("admin/keywords/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-backspace c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.keyword.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('keyword_app_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.keyword-apps.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/keyword-apps") || request()->is("admin/keyword-apps/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.keywordApp.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('keyword_prerender_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.keyword-prerenders.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/keyword-prerenders") || request()->is("admin/keyword-prerenders/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.keywordPrerender.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
             </li>
         @endcan
         @can('user_management_access')
@@ -182,7 +224,7 @@
             </li>
         @endcan
         @can('developer_area_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/access-tokens*") ? "c-show" : "" }} {{ request()->is("admin/*") ? "c-show" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/access-tokens*") ? "c-show" : "" }} {{ request()->is("admin/*") ? "c-show" : "" }} {{ request()->is("admin/notes*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
 
@@ -242,7 +284,27 @@
                             </ul>
                         </li>
                     @endcan
+                    @can('note_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.notes.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/notes") || request()->is("admin/notes/*") ? "c-active" : "" }}">
+                                <i class="fa-fw far fa-sticky-note c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.note.title') }}
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
+            </li>
+        @endcan
+        @can('listing_pocket_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.listing-pockets.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/listing-pockets") || request()->is("admin/listing-pockets/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.listingPocket.title') }}
+                </a>
             </li>
         @endcan
         @php($unread = \App\Models\QaTopic::unreadCount())

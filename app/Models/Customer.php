@@ -23,6 +23,7 @@ class Customer extends Model
     protected $fillable = [
         'active',
         'published',
+        'lending_officer_id',
         'name',
         'description',
         'rates',
@@ -57,5 +58,10 @@ class Customer extends Model
     public function customerEmailHistories()
     {
         return $this->hasMany(EmailHistory::class, 'customer_id', 'id');
+    }
+
+    public function lending_officer()
+    {
+        return $this->belongsTo(LendingOfficer::class, 'lending_officer_id');
     }
 }

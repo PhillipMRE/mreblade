@@ -7,6 +7,7 @@ use App\Http\Requests\MassDestroyKeywordRequest;
 use App\Http\Requests\StoreKeywordRequest;
 use App\Http\Requests\UpdateKeywordRequest;
 use App\Models\Agent;
+use App\Models\Customer;
 use App\Models\Keyword;
 use Gate;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class KeywordController extends Controller
         abort_if(Gate::denies('keyword_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Keyword::with(['agents'])->select(sprintf('%s.*', (new Keyword)->table));
+            $query = Keyword::with(['agents', 'customer'])->select(sprintf('%s.*', (new Keyword)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -47,16 +48,11 @@ class KeywordController extends Controller
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
             });
-            $table->editColumn('agents', function ($row) {
-                $labels = [];
-                foreach ($row->agents as $agent) {
-                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $agent->display_name);
-                }
-
-                return implode(' ', $labels);
+            $table->editColumn('active', function ($row) {
+                return '<input type="checkbox" disabled ' . ($row->active ? 'checked' : null) . '>';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'agents']);
+            $table->rawColumns(['actions', 'placeholder', 'active']);
 
             return $table->make(true);
         }
@@ -70,7 +66,9 @@ class KeywordController extends Controller
 
         $agents = Agent::pluck('display_name', 'id');
 
-        return view('admin.keywords.create', compact('agents'));
+        $customers = Customer::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.keywords.create', compact('agents', 'customers'));
     }
 
     public function store(StoreKeywordRequest $request)
@@ -87,9 +85,11 @@ class KeywordController extends Controller
 
         $agents = Agent::pluck('display_name', 'id');
 
-        $keyword->load('agents');
+        $customers = Customer::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.keywords.edit', compact('agents', 'keyword'));
+        $keyword->load('agents', 'customer');
+
+        return view('admin.keywords.edit', compact('agents', 'customers', 'keyword'));
     }
 
     public function update(UpdateKeywordRequest $request, Keyword $keyword)
@@ -104,7 +104,7 @@ class KeywordController extends Controller
     {
         abort_if(Gate::denies('keyword_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $keyword->load('agents');
+        $keyword->load('agents', 'customer');
 
         return view('admin.keywords.show', compact('keyword'));
     }

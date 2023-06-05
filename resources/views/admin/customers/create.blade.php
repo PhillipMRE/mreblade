@@ -36,6 +36,20 @@
                 <span class="help-block">{{ trans('cruds.customer.fields.published_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="lending_officer_id">{{ trans('cruds.customer.fields.lending_officer') }}</label>
+                <select class="form-control select2 {{ $errors->has('lending_officer') ? 'is-invalid' : '' }}" name="lending_officer_id" id="lending_officer_id">
+                    @foreach($lending_officers as $id => $entry)
+                        <option value="{{ $id }}" {{ old('lending_officer_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('lending_officer'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('lending_officer') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.customer.fields.lending_officer_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="name">{{ trans('cruds.customer.fields.name') }}</label>
                 <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', '') }}">
                 @if($errors->has('name'))

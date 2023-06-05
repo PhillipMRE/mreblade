@@ -25,7 +25,13 @@
                         {{ trans('cruds.lendingOfficer.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.lendingOfficer.fields.user') }}
+                        {{ trans('cruds.lendingOfficer.fields.published') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.lendingOfficer.fields.contact_phone') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.lendingOfficer.fields.template') }}
                     </th>
                     <th>
                         &nbsp;
@@ -84,7 +90,9 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
-{ data: 'user_name', name: 'user.name' },
+{ data: 'published', name: 'published' },
+{ data: 'contact_phone', name: 'contact_phone' },
+{ data: 'template', name: 'template' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

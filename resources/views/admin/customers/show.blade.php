@@ -41,6 +41,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.customer.fields.lending_officer') }}
+                        </th>
+                        <td>
+                            {{ $customer->lending_officer->display_name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.customer.fields.name') }}
                         </th>
                         <td>

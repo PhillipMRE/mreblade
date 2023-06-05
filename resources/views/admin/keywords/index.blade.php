@@ -28,7 +28,7 @@
                         {{ trans('cruds.keyword.fields.name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.keyword.fields.agents') }}
+                        {{ trans('cruds.keyword.fields.active') }}
                     </th>
                     <th>
                         &nbsp;
@@ -88,7 +88,7 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
-{ data: 'agents', name: 'agents.display_name' },
+{ data: 'active', name: 'active' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

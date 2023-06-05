@@ -336,26 +336,130 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 82,
-                'title' => 'lending_officer_create',
+                'title' => 'keyword_area_access',
             ],
             [
                 'id'    => 83,
-                'title' => 'lending_officer_edit',
+                'title' => 'keyword_app_create',
             ],
             [
                 'id'    => 84,
-                'title' => 'lending_officer_show',
+                'title' => 'keyword_app_edit',
             ],
             [
                 'id'    => 85,
-                'title' => 'lending_officer_delete',
+                'title' => 'keyword_app_show',
             ],
             [
                 'id'    => 86,
-                'title' => 'lending_officer_access',
+                'title' => 'keyword_app_delete',
             ],
             [
                 'id'    => 87,
+                'title' => 'keyword_app_access',
+            ],
+            [
+                'id'    => 88,
+                'title' => 'keyword_prerender_create',
+            ],
+            [
+                'id'    => 89,
+                'title' => 'keyword_prerender_edit',
+            ],
+            [
+                'id'    => 90,
+                'title' => 'keyword_prerender_show',
+            ],
+            [
+                'id'    => 91,
+                'title' => 'keyword_prerender_delete',
+            ],
+            [
+                'id'    => 92,
+                'title' => 'keyword_prerender_access',
+            ],
+            [
+                'id'    => 93,
+                'title' => 'lending_officer_create',
+            ],
+            [
+                'id'    => 94,
+                'title' => 'lending_officer_edit',
+            ],
+            [
+                'id'    => 95,
+                'title' => 'lending_officer_show',
+            ],
+            [
+                'id'    => 96,
+                'title' => 'lending_officer_delete',
+            ],
+            [
+                'id'    => 97,
+                'title' => 'lending_officer_access',
+            ],
+            [
+                'id'    => 98,
+                'title' => 'listing_create',
+            ],
+            [
+                'id'    => 99,
+                'title' => 'listing_edit',
+            ],
+            [
+                'id'    => 100,
+                'title' => 'listing_show',
+            ],
+            [
+                'id'    => 101,
+                'title' => 'listing_delete',
+            ],
+            [
+                'id'    => 102,
+                'title' => 'listing_access',
+            ],
+            [
+                'id'    => 103,
+                'title' => 'note_create',
+            ],
+            [
+                'id'    => 104,
+                'title' => 'note_edit',
+            ],
+            [
+                'id'    => 105,
+                'title' => 'note_show',
+            ],
+            [
+                'id'    => 106,
+                'title' => 'note_delete',
+            ],
+            [
+                'id'    => 107,
+                'title' => 'note_access',
+            ],
+            [
+                'id'    => 108,
+                'title' => 'listing_pocket_create',
+            ],
+            [
+                'id'    => 109,
+                'title' => 'listing_pocket_edit',
+            ],
+            [
+                'id'    => 110,
+                'title' => 'listing_pocket_show',
+            ],
+            [
+                'id'    => 111,
+                'title' => 'listing_pocket_delete',
+            ],
+            [
+                'id'    => 112,
+                'title' => 'listing_pocket_access',
+            ],
+            [
+                'id'    => 113,
                 'title' => 'profile_password_edit',
             ],
         ];

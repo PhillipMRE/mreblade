@@ -97,6 +97,46 @@
                             @endforeach
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.keyword.fields.customer') }}
+                        </th>
+                        <td>
+                            {{ $keyword->customer->name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.keyword.fields.show_solds') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $keyword->show_solds ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.keyword.fields.use_version_5') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $keyword->use_version_5 ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.keyword.fields.active') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $keyword->active ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.keyword.fields.listhub') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $keyword->listhub ? 'checked' : '' }}>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

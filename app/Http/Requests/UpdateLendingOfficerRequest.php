@@ -16,6 +16,71 @@ class UpdateLendingOfficerRequest extends FormRequest
 
     public function rules()
     {
-        return [];
+        return [
+            'display_name' => [
+                'string',
+                'nullable',
+            ],
+            'notify_phone' => [
+                'string',
+                'nullable',
+            ],
+            'contact_phone' => [
+                'string',
+                'nullable',
+            ],
+            'timezone' => [
+                'string',
+                'nullable',
+            ],
+            'call_line' => [
+                'string',
+                'nullable',
+            ],
+            'license' => [
+                'string',
+                'nullable',
+            ],
+            'website' => [
+                'string',
+                'nullable',
+            ],
+            'facebook' => [
+                'string',
+                'nullable',
+            ],
+            'youtube' => [
+                'string',
+                'nullable',
+            ],
+            'linkedin' => [
+                'string',
+                'nullable',
+            ],
+            'twitter' => [
+                'string',
+                'nullable',
+            ],
+            'instagram' => [
+                'string',
+                'nullable',
+            ],
+            'settings' => [
+                'string',
+                'nullable',
+            ],
+            'office' => [
+                'string',
+                'nullable',
+            ],
+            'hubspot' => [
+                'string',
+                'nullable',
+            ],
+            'welcome_sent' => [
+                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
+                'nullable',
+            ],
+        ];
     }
 }

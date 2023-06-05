@@ -7,6 +7,7 @@ use App\Http\Requests\MassDestroyCustomerRequest;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
+use App\Models\LendingOfficer;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,7 @@ class CustomerController extends Controller
         abort_if(Gate::denies('customer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Customer::query()->select(sprintf('%s.*', (new Customer)->table));
+            $query = Customer::with(['lending_officer'])->select(sprintf('%s.*', (new Customer)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -77,7 +78,9 @@ class CustomerController extends Controller
     {
         abort_if(Gate::denies('customer_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.customers.create');
+        $lending_officers = LendingOfficer::pluck('display_name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.customers.create', compact('lending_officers'));
     }
 
     public function store(StoreCustomerRequest $request)
@@ -91,7 +94,11 @@ class CustomerController extends Controller
     {
         abort_if(Gate::denies('customer_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.customers.edit', compact('customer'));
+        $lending_officers = LendingOfficer::pluck('display_name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $customer->load('lending_officer');
+
+        return view('admin.customers.edit', compact('customer', 'lending_officers'));
     }
 
     public function update(UpdateCustomerRequest $request, Customer $customer)
@@ -105,7 +112,7 @@ class CustomerController extends Controller
     {
         abort_if(Gate::denies('customer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $customer->load('customerEmailHistories');
+        $customer->load('lending_officer', 'customerEmailHistories');
 
         return view('admin.customers.show', compact('customer'));
     }

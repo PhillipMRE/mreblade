@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyLendingOfficerRequest;
 use App\Http\Requests\StoreLendingOfficerRequest;
 use App\Http\Requests\UpdateLendingOfficerRequest;
@@ -10,11 +11,14 @@ use App\Models\LendingOfficer;
 use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
 class LendingOfficerController extends Controller
 {
+    use MediaUploadingTrait;
+
     public function index(Request $request)
     {
         abort_if(Gate::denies('lending_officer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -44,11 +48,17 @@ class LendingOfficerController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : '';
             });
-            $table->addColumn('user_name', function ($row) {
-                return $row->user ? $row->user->name : '';
+            $table->editColumn('published', function ($row) {
+                return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
+            });
+            $table->editColumn('contact_phone', function ($row) {
+                return $row->contact_phone ? $row->contact_phone : '';
+            });
+            $table->editColumn('template', function ($row) {
+                return $row->template ? $row->template : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'user']);
+            $table->rawColumns(['actions', 'placeholder', 'published']);
 
             return $table->make(true);
         }
@@ -68,6 +78,10 @@ class LendingOfficerController extends Controller
     public function store(StoreLendingOfficerRequest $request)
     {
         $lendingOfficer = LendingOfficer::create($request->all());
+
+        if ($media = $request->input('ck-media', false)) {
+            Media::whereIn('id', $media)->update(['model_id' => $lendingOfficer->id]);
+        }
 
         return redirect()->route('admin.lending-officers.index');
     }
@@ -94,7 +108,7 @@ class LendingOfficerController extends Controller
     {
         abort_if(Gate::denies('lending_officer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $lendingOfficer->load('user');
+        $lendingOfficer->load('user', 'lendingOfficerCustomers');
 
         return view('admin.lendingOfficers.show', compact('lendingOfficer'));
     }
@@ -117,5 +131,17 @@ class LendingOfficerController extends Controller
         }
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function storeCKEditorImages(Request $request)
+    {
+        abort_if(Gate::denies('lending_officer_create') && Gate::denies('lending_officer_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $model         = new LendingOfficer();
+        $model->id     = $request->input('crud_id', 0);
+        $model->exists = true;
+        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+
+        return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }
 }

@@ -109,6 +109,72 @@
                 <span class="help-block">{{ trans('cruds.keyword.fields.agents_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="customer_id">{{ trans('cruds.keyword.fields.customer') }}</label>
+                <select class="form-control select2 {{ $errors->has('customer') ? 'is-invalid' : '' }}" name="customer_id" id="customer_id">
+                    @foreach($customers as $id => $entry)
+                        <option value="{{ $id }}" {{ (old('customer_id') ? old('customer_id') : $keyword->customer->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('customer'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('customer') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.keyword.fields.customer_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <div class="form-check {{ $errors->has('show_solds') ? 'is-invalid' : '' }}">
+                    <input type="hidden" name="show_solds" value="0">
+                    <input class="form-check-input" type="checkbox" name="show_solds" id="show_solds" value="1" {{ $keyword->show_solds || old('show_solds', 0) === 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="show_solds">{{ trans('cruds.keyword.fields.show_solds') }}</label>
+                </div>
+                @if($errors->has('show_solds'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('show_solds') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.keyword.fields.show_solds_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <div class="form-check {{ $errors->has('use_version_5') ? 'is-invalid' : '' }}">
+                    <input type="hidden" name="use_version_5" value="0">
+                    <input class="form-check-input" type="checkbox" name="use_version_5" id="use_version_5" value="1" {{ $keyword->use_version_5 || old('use_version_5', 0) === 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="use_version_5">{{ trans('cruds.keyword.fields.use_version_5') }}</label>
+                </div>
+                @if($errors->has('use_version_5'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('use_version_5') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.keyword.fields.use_version_5_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <div class="form-check {{ $errors->has('active') ? 'is-invalid' : '' }}">
+                    <input type="hidden" name="active" value="0">
+                    <input class="form-check-input" type="checkbox" name="active" id="active" value="1" {{ $keyword->active || old('active', 0) === 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="active">{{ trans('cruds.keyword.fields.active') }}</label>
+                </div>
+                @if($errors->has('active'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('active') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.keyword.fields.active_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <div class="form-check {{ $errors->has('listhub') ? 'is-invalid' : '' }}">
+                    <input type="hidden" name="listhub" value="0">
+                    <input class="form-check-input" type="checkbox" name="listhub" id="listhub" value="1" {{ $keyword->listhub || old('listhub', 0) === 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="listhub">{{ trans('cruds.keyword.fields.listhub') }}</label>
+                </div>
+                @if($errors->has('listhub'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('listhub') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.keyword.fields.listhub_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

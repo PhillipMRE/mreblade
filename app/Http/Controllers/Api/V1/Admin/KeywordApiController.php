@@ -17,7 +17,7 @@ class KeywordApiController extends Controller
     {
         abort_if(Gate::denies('keyword_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new KeywordResource(Keyword::with(['agents'])->get());
+        return new KeywordResource(Keyword::with(['agents', 'customer'])->get());
     }
 
     public function store(StoreKeywordRequest $request)
@@ -34,7 +34,7 @@ class KeywordApiController extends Controller
     {
         abort_if(Gate::denies('keyword_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new KeywordResource($keyword->load(['agents']));
+        return new KeywordResource($keyword->load(['agents', 'customer']));
     }
 
     public function update(UpdateKeywordRequest $request, Keyword $keyword)

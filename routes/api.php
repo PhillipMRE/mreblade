@@ -45,6 +45,22 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Keyword
     Route::apiResource('keywords', 'KeywordApiController');
 
+    // Keyword App
+    Route::apiResource('keyword-apps', 'KeywordAppApiController');
+
+    // Keyword Prerender
+    Route::apiResource('keyword-prerenders', 'KeywordPrerenderApiController');
+
     // Lending Officer
+    Route::post('lending-officers/media', 'LendingOfficerApiController@storeMedia')->name('lending-officers.storeMedia');
     Route::apiResource('lending-officers', 'LendingOfficerApiController');
+
+    // Listing
+    Route::apiResource('listings', 'ListingApiController');
+
+    // Note
+    Route::apiResource('notes', 'NoteApiController');
+
+    // Listing Pocket
+    Route::apiResource('listing-pockets', 'ListingPocketApiController');
 });

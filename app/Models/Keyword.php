@@ -29,6 +29,11 @@ class Keyword extends Model
         'shortcode',
         'listing_settings',
         'sponsor_only',
+        'customer_id',
+        'show_solds',
+        'use_version_5',
+        'active',
+        'listhub',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -42,5 +47,10 @@ class Keyword extends Model
     public function agents()
     {
         return $this->belongsToMany(Agent::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 }

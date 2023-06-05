@@ -17,7 +17,7 @@ class CustomerApiController extends Controller
     {
         abort_if(Gate::denies('customer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new CustomerResource(Customer::all());
+        return new CustomerResource(Customer::with(['lending_officer'])->get());
     }
 
     public function store(StoreCustomerRequest $request)
@@ -33,7 +33,7 @@ class CustomerApiController extends Controller
     {
         abort_if(Gate::denies('customer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new CustomerResource($customer);
+        return new CustomerResource($customer->load(['lending_officer']));
     }
 
     public function update(UpdateCustomerRequest $request, Customer $customer)

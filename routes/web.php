@@ -87,9 +87,31 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('keywords/destroy', 'KeywordController@massDestroy')->name('keywords.massDestroy');
     Route::resource('keywords', 'KeywordController');
 
+    // Keyword App
+    Route::delete('keyword-apps/destroy', 'KeywordAppController@massDestroy')->name('keyword-apps.massDestroy');
+    Route::resource('keyword-apps', 'KeywordAppController');
+
+    // Keyword Prerender
+    Route::delete('keyword-prerenders/destroy', 'KeywordPrerenderController@massDestroy')->name('keyword-prerenders.massDestroy');
+    Route::resource('keyword-prerenders', 'KeywordPrerenderController');
+
     // Lending Officer
     Route::delete('lending-officers/destroy', 'LendingOfficerController@massDestroy')->name('lending-officers.massDestroy');
+    Route::post('lending-officers/media', 'LendingOfficerController@storeMedia')->name('lending-officers.storeMedia');
+    Route::post('lending-officers/ckmedia', 'LendingOfficerController@storeCKEditorImages')->name('lending-officers.storeCKEditorImages');
     Route::resource('lending-officers', 'LendingOfficerController');
+
+    // Listing
+    Route::delete('listings/destroy', 'ListingController@massDestroy')->name('listings.massDestroy');
+    Route::resource('listings', 'ListingController');
+
+    // Note
+    Route::delete('notes/destroy', 'NoteController@massDestroy')->name('notes.massDestroy');
+    Route::resource('notes', 'NoteController');
+
+    // Listing Pocket
+    Route::delete('listing-pockets/destroy', 'ListingPocketController@massDestroy')->name('listing-pockets.massDestroy');
+    Route::resource('listing-pockets', 'ListingPocketController');
 
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
