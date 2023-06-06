@@ -20,12 +20,13 @@ class AgentsApiController extends Controller
     {
         abort_if(Gate::denies('agent_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new AgentResource(Agent::with(['user'])->get());
+        return new AgentResource(Agent::with(['user', 'phones'])->get());
     }
 
     public function store(StoreAgentRequest $request)
     {
         $agent = Agent::create($request->all());
+        $agent->phones()->sync($request->input('phones', []));
 
         return (new AgentResource($agent))
             ->response()
@@ -36,12 +37,13 @@ class AgentsApiController extends Controller
     {
         abort_if(Gate::denies('agent_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new AgentResource($agent->load(['user']));
+        return new AgentResource($agent->load(['user', 'phones']));
     }
 
     public function update(UpdateAgentRequest $request, Agent $agent)
     {
         $agent->update($request->all());
+        $agent->phones()->sync($request->input('phones', []));
 
         return (new AgentResource($agent))
             ->response()

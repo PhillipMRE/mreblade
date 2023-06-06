@@ -6,6 +6,10 @@
             <a class="btn btn-success" href="{{ route('admin.users.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.user.title_singular') }}
             </a>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                {{ trans('global.app_csvImport') }}
+            </button>
+            @include('csvImport.modal', ['model' => 'User', 'route' => 'admin.users.parseCsvImport'])
         </div>
     </div>
 @endcan
@@ -29,6 +33,12 @@
                     </th>
                     <th>
                         {{ trans('cruds.user.fields.name') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.user.fields.approved') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.user.fields.verified') }}
                     </th>
                     <th>
                         {{ trans('cruds.user.fields.phone') }}
@@ -98,6 +108,8 @@
 { data: 'id', name: 'id' },
 { data: 'avatar', name: 'avatar', sortable: false, searchable: false },
 { data: 'name', name: 'name' },
+{ data: 'approved', name: 'approved' },
+{ data: 'verified', name: 'verified' },
 { data: 'phone', name: 'phone' },
 { data: 'email', name: 'email' },
 { data: 'roles', name: 'roles.title' },

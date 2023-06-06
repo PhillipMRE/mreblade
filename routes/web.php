@@ -9,7 +9,8 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 });
 
-Auth::routes(['register' => false]);
+Route::get('userVerification/{token}', 'UserVerificationController@approve')->name('userVerification');
+Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', '2fa']], function () {
     Route::get('/', 'HomeController@index')->name('home');
@@ -25,6 +26,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::post('users/media', 'UsersController@storeMedia')->name('users.storeMedia');
     Route::post('users/ckmedia', 'UsersController@storeCKEditorImages')->name('users.storeCKEditorImages');
+    Route::post('users/parse-csv-import', 'UsersController@parseCsvImport')->name('users.parseCsvImport');
+    Route::post('users/process-csv-import', 'UsersController@processCsvImport')->name('users.processCsvImport');
     Route::resource('users', 'UsersController');
 
     // Audit Logs
@@ -51,6 +54,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('posts/destroy', 'PostController@massDestroy')->name('posts.massDestroy');
     Route::post('posts/media', 'PostController@storeMedia')->name('posts.storeMedia');
     Route::post('posts/ckmedia', 'PostController@storeCKEditorImages')->name('posts.storeCKEditorImages');
+    Route::post('posts/parse-csv-import', 'PostController@parseCsvImport')->name('posts.parseCsvImport');
+    Route::post('posts/process-csv-import', 'PostController@processCsvImport')->name('posts.processCsvImport');
     Route::resource('posts', 'PostController');
 
     // Access Token
@@ -63,6 +68,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Customer
     Route::delete('customers/destroy', 'CustomerController@massDestroy')->name('customers.massDestroy');
+    Route::post('customers/parse-csv-import', 'CustomerController@parseCsvImport')->name('customers.parseCsvImport');
+    Route::post('customers/process-csv-import', 'CustomerController@processCsvImport')->name('customers.processCsvImport');
     Route::resource('customers', 'CustomerController');
 
     // Disclaimer Group
@@ -113,6 +120,55 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('listing-pockets/destroy', 'ListingPocketController@massDestroy')->name('listing-pockets.massDestroy');
     Route::resource('listing-pockets', 'ListingPocketController');
 
+    // Board
+    Route::delete('boards/destroy', 'BoardController@massDestroy')->name('boards.massDestroy');
+    Route::post('boards/media', 'BoardController@storeMedia')->name('boards.storeMedia');
+    Route::post('boards/ckmedia', 'BoardController@storeCKEditorImages')->name('boards.storeCKEditorImages');
+    Route::resource('boards', 'BoardController');
+
+    // State Resident
+    Route::delete('state-residents/destroy', 'StateResidentController@massDestroy')->name('state-residents.massDestroy');
+    Route::resource('state-residents', 'StateResidentController');
+
+    // State
+    Route::delete('states/destroy', 'StateController@massDestroy')->name('states.massDestroy');
+    Route::post('states/parse-csv-import', 'StateController@parseCsvImport')->name('states.parseCsvImport');
+    Route::post('states/process-csv-import', 'StateController@processCsvImport')->name('states.processCsvImport');
+    Route::resource('states', 'StateController');
+
+    // Status Type
+    Route::delete('status-types/destroy', 'StatusTypeController@massDestroy')->name('status-types.massDestroy');
+    Route::resource('status-types', 'StatusTypeController');
+
+    // Carrier
+    Route::delete('carriers/destroy', 'CarrierController@massDestroy')->name('carriers.massDestroy');
+    Route::resource('carriers', 'CarrierController');
+
+    // Chart
+    Route::delete('charts/destroy', 'ChartController@massDestroy')->name('charts.massDestroy');
+    Route::resource('charts', 'ChartController');
+
+    // Phone
+    Route::delete('phones/destroy', 'PhoneController@massDestroy')->name('phones.massDestroy');
+    Route::resource('phones', 'PhoneController');
+
+    // Sponsor
+    Route::delete('sponsors/destroy', 'SponsorController@massDestroy')->name('sponsors.massDestroy');
+    Route::post('sponsors/media', 'SponsorController@storeMedia')->name('sponsors.storeMedia');
+    Route::post('sponsors/ckmedia', 'SponsorController@storeCKEditorImages')->name('sponsors.storeCKEditorImages');
+    Route::post('sponsors/parse-csv-import', 'SponsorController@parseCsvImport')->name('sponsors.parseCsvImport');
+    Route::post('sponsors/process-csv-import', 'SponsorController@processCsvImport')->name('sponsors.processCsvImport');
+    Route::resource('sponsors', 'SponsorController');
+
+    // Sms Template
+    Route::delete('sms-templates/destroy', 'SmsTemplateController@massDestroy')->name('sms-templates.massDestroy');
+    Route::resource('sms-templates', 'SmsTemplateController');
+
+    // Sms Template Default
+    Route::delete('sms-template-defaults/destroy', 'SmsTemplateDefaultController@massDestroy')->name('sms-template-defaults.massDestroy');
+    Route::resource('sms-template-defaults', 'SmsTemplateDefaultController');
+
+    Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
     Route::post('messenger', 'MessengerController@storeTopic')->name('messenger.storeTopic');

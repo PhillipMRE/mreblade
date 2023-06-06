@@ -61,6 +61,22 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.user.fields.approved') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $user->approved ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.verified') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $user->verified ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.user.fields.phone') }}
                         </th>
                         <td>
@@ -107,6 +123,16 @@
                         </th>
                         <td>
                             {{ $user->slug }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.phone_numbers') }}
+                        </th>
+                        <td>
+                            @foreach($user->phone_numbers as $key => $phone_numbers)
+                                <span class="label label-info">{{ $phone_numbers->number }}</span>
+                            @endforeach
                         </td>
                     </tr>
                 </tbody>

@@ -63,4 +63,36 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Listing Pocket
     Route::apiResource('listing-pockets', 'ListingPocketApiController');
+
+    // Board
+    Route::post('boards/media', 'BoardApiController@storeMedia')->name('boards.storeMedia');
+    Route::apiResource('boards', 'BoardApiController');
+
+    // State Resident
+    Route::apiResource('state-residents', 'StateResidentApiController');
+
+    // State
+    Route::apiResource('states', 'StateApiController');
+
+    // Status Type
+    Route::apiResource('status-types', 'StatusTypeApiController');
+
+    // Carrier
+    Route::apiResource('carriers', 'CarrierApiController');
+
+    // Chart
+    Route::apiResource('charts', 'ChartApiController');
+
+    // Phone
+    Route::apiResource('phones', 'PhoneApiController');
+
+    // Sponsor
+    Route::post('sponsors/media', 'SponsorApiController@storeMedia')->name('sponsors.storeMedia');
+    Route::apiResource('sponsors', 'SponsorApiController');
+
+    // Sms Template
+    Route::apiResource('sms-templates', 'SmsTemplateApiController');
+
+    // Sms Template Default
+    Route::apiResource('sms-template-defaults', 'SmsTemplateDefaultApiController');
 });

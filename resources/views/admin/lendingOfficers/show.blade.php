@@ -215,6 +215,24 @@
                             {{ $lendingOfficer->welcome_sent }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.lendingOfficer.fields.phone_numbers') }}
+                        </th>
+                        <td>
+                            @foreach($lendingOfficer->phone_numbers as $key => $phone_numbers)
+                                <span class="label label-info">{{ $phone_numbers->number }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.lendingOfficer.fields.phone') }}
+                        </th>
+                        <td>
+                            {{ $lendingOfficer->phone->number ?? '' }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

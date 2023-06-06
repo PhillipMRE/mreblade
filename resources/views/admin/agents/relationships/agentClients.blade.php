@@ -25,19 +25,22 @@
                             {{ trans('cruds.client.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.client.fields.name') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.client.fields.published') }}
                         </th>
                         <th>
                             {{ trans('cruds.client.fields.claimed') }}
                         </th>
                         <th>
+                            {{ trans('cruds.client.fields.name') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.client.fields.photo') }}
                         </th>
                         <th>
                             {{ trans('cruds.client.fields.agent') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.client.fields.phone_numbers') }}
                         </th>
                         <th>
                             &nbsp;
@@ -54,15 +57,15 @@
                                 {{ $client->id ?? '' }}
                             </td>
                             <td>
-                                {{ $client->name ?? '' }}
-                            </td>
-                            <td>
                                 <span style="display:none">{{ $client->published ?? '' }}</span>
                                 <input type="checkbox" disabled="disabled" {{ $client->published ? 'checked' : '' }}>
                             </td>
                             <td>
                                 <span style="display:none">{{ $client->claimed ?? '' }}</span>
                                 <input type="checkbox" disabled="disabled" {{ $client->claimed ? 'checked' : '' }}>
+                            </td>
+                            <td>
+                                {{ $client->name ?? '' }}
                             </td>
                             <td>
                                 @if($client->photo)
@@ -73,6 +76,11 @@
                             </td>
                             <td>
                                 {{ $client->agent->display_name ?? '' }}
+                            </td>
+                            <td>
+                                @foreach($client->phone_numbers as $key => $item)
+                                    <span class="badge badge-info">{{ $item->number }}</span>
+                                @endforeach
                             </td>
                             <td>
                                 @can('client_show')

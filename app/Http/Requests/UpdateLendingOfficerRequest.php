@@ -81,6 +81,12 @@ class UpdateLendingOfficerRequest extends FormRequest
                 'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
                 'nullable',
             ],
+            'phone_numbers.*' => [
+                'integer',
+            ],
+            'phone_numbers' => [
+                'array',
+            ],
         ];
     }
 }

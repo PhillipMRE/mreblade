@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyPostRequest;
 use App\Http\Requests\StorePostRequest;
@@ -17,7 +18,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class PostController extends Controller
 {
-    use MediaUploadingTrait;
+    use MediaUploadingTrait, CsvImportTrait;
 
     public function index(Request $request)
     {

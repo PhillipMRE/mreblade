@@ -34,6 +34,15 @@
                         {{ trans('cruds.lendingOfficer.fields.template') }}
                     </th>
                     <th>
+                        {{ trans('cruds.lendingOfficer.fields.phone_numbers') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.lendingOfficer.fields.phone') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.phone.fields.phone_type') }}
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -93,6 +102,9 @@
 { data: 'published', name: 'published' },
 { data: 'contact_phone', name: 'contact_phone' },
 { data: 'template', name: 'template' },
+{ data: 'phone_numbers', name: 'phone_numbers.number' },
+{ data: 'phone_number', name: 'phone.number' },
+{ data: 'phone.phone_type', name: 'phone.phone_type' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

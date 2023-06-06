@@ -21,14 +21,6 @@ class UpdateAgentRequest extends FormRequest
                 'string',
                 'nullable',
             ],
-            'notify_phone' => [
-                'string',
-                'nullable',
-            ],
-            'contact_phone' => [
-                'string',
-                'nullable',
-            ],
             'timezone' => [
                 'string',
                 'nullable',
@@ -76,6 +68,12 @@ class UpdateAgentRequest extends FormRequest
             'vetting_data' => [
                 'date_format:' . config('panel.date_format'),
                 'nullable',
+            ],
+            'phones.*' => [
+                'integer',
+            ],
+            'phones' => [
+                'array',
             ],
         ];
     }

@@ -26,6 +26,7 @@ class Listing extends Model
     ];
 
     protected $fillable = [
+        'published',
         'full_address',
         'street_number',
         'street_name',

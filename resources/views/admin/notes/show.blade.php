@@ -25,6 +25,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.note.fields.note_type') }}
+                        </th>
+                        <td>
+                            {{ App\Models\Note::NOTE_TYPE_SELECT[$note->note_type] ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.note.fields.note') }}
                         </th>
                         <td>

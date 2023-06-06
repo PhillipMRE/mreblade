@@ -25,14 +25,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.client.fields.name') }}
-                        </th>
-                        <td>
-                            {{ $client->name }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.client.fields.published') }}
                         </th>
                         <td>
@@ -53,6 +45,22 @@
                         </th>
                         <td>
                             <input type="checkbox" disabled="disabled" {{ $client->claimed ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.suspended') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $client->suspended ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.client.fields.name') }}
+                        </th>
+                        <td>
+                            {{ $client->name }}
                         </td>
                     </tr>
                     <tr>
@@ -133,10 +141,12 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.client.fields.suspended') }}
+                            {{ trans('cruds.client.fields.phone_numbers') }}
                         </th>
                         <td>
-                            <input type="checkbox" disabled="disabled" {{ $client->suspended ? 'checked' : '' }}>
+                            @foreach($client->phone_numbers as $key => $phone_numbers)
+                                <span class="label label-info">{{ $phone_numbers->number }}</span>
+                            @endforeach
                         </td>
                     </tr>
                 </tbody>
@@ -150,6 +160,22 @@
     </div>
 </div>
 
-
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.relatedData') }}
+    </div>
+    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#client_charts" role="tab" data-toggle="tab">
+                {{ trans('cruds.chart.title') }}
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" role="tabpanel" id="client_charts">
+            @includeIf('admin.clients.relationships.clientCharts', ['charts' => $client->clientCharts])
+        </div>
+    </div>
+</div>
 
 @endsection

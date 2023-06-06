@@ -27,10 +27,11 @@ class Agent extends Model implements HasMedia
 
     protected $fillable = [
         'published',
+        'is_vetted',
+        'user_confirmed_info',
+        'demo',
         'user_id',
         'display_name',
-        'notify_phone',
-        'contact_phone',
         'timezone',
         'call_line',
         'biography',
@@ -44,10 +45,7 @@ class Agent extends Model implements HasMedia
         'settings',
         'office',
         'template',
-        'is_vetted',
         'vetting_data',
-        'user_confirmed_info',
-        'demo',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -82,5 +80,10 @@ class Agent extends Model implements HasMedia
     public function setVettingDataAttribute($value)
     {
         $this->attributes['vetting_data'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
+    }
+
+    public function phones()
+    {
+        return $this->belongsToMany(Phone::class);
     }
 }

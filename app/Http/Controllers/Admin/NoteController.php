@@ -45,6 +45,9 @@ class NoteController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : '';
             });
+            $table->editColumn('note_type', function ($row) {
+                return $row->note_type ? Note::NOTE_TYPE_SELECT[$row->note_type] : '';
+            });
             $table->editColumn('note', function ($row) {
                 return $row->note ? $row->note : '';
             });

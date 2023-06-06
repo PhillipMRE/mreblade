@@ -28,13 +28,13 @@
                         {{ trans('cruds.agent.fields.published') }}
                     </th>
                     <th>
-                        {{ trans('cruds.agent.fields.contact_phone') }}
+                        {{ trans('cruds.agent.fields.is_vetted') }}
                     </th>
                     <th>
                         {{ trans('cruds.agent.fields.template') }}
                     </th>
                     <th>
-                        {{ trans('cruds.agent.fields.is_vetted') }}
+                        {{ trans('cruds.agent.fields.phone') }}
                     </th>
                     <th>
                         &nbsp;
@@ -94,9 +94,9 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'published', name: 'published' },
-{ data: 'contact_phone', name: 'contact_phone' },
-{ data: 'template', name: 'template' },
 { data: 'is_vetted', name: 'is_vetted' },
+{ data: 'template', name: 'template' },
+{ data: 'phone', name: 'phones.number' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

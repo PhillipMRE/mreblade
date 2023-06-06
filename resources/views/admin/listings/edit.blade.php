@@ -11,6 +11,19 @@
             @method('PUT')
             @csrf
             <div class="form-group">
+                <div class="form-check {{ $errors->has('published') ? 'is-invalid' : '' }}">
+                    <input type="hidden" name="published" value="0">
+                    <input class="form-check-input" type="checkbox" name="published" id="published" value="1" {{ $listing->published || old('published', 0) === 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="published">{{ trans('cruds.listing.fields.published') }}</label>
+                </div>
+                @if($errors->has('published'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('published') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.listing.fields.published_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="full_address">{{ trans('cruds.listing.fields.full_address') }}</label>
                 <input class="form-control {{ $errors->has('full_address') ? 'is-invalid' : '' }}" type="text" name="full_address" id="full_address" value="{{ old('full_address', $listing->full_address) }}">
                 @if($errors->has('full_address'))

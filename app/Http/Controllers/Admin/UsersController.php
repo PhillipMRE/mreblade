@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Phone;
 use App\Models\Role;
 use App\Models\User;
 use Gate;
@@ -17,14 +19,14 @@ use Yajra\DataTables\Facades\DataTables;
 
 class UsersController extends Controller
 {
-    use MediaUploadingTrait;
+    use MediaUploadingTrait, CsvImportTrait;
 
     public function index(Request $request)
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = User::with(['roles'])->select(sprintf('%s.*', (new User)->table));
+            $query = User::with(['roles', 'phone_numbers'])->select(sprintf('%s.*', (new User)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -62,6 +64,12 @@ class UsersController extends Controller
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
             });
+            $table->editColumn('approved', function ($row) {
+                return '<input type="checkbox" disabled ' . ($row->approved ? 'checked' : null) . '>';
+            });
+            $table->editColumn('verified', function ($row) {
+                return '<input type="checkbox" disabled ' . ($row->verified ? 'checked' : null) . '>';
+            });
             $table->editColumn('phone', function ($row) {
                 return $row->phone ? $row->phone : '';
             });
@@ -77,7 +85,7 @@ class UsersController extends Controller
                 return implode(' ', $labels);
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'avatar', 'roles']);
+            $table->rawColumns(['actions', 'placeholder', 'avatar', 'approved', 'verified', 'roles']);
 
             return $table->make(true);
         }
@@ -91,13 +99,16 @@ class UsersController extends Controller
 
         $roles = Role::pluck('title', 'id');
 
-        return view('admin.users.create', compact('roles'));
+        $phone_numbers = Phone::pluck('number', 'id');
+
+        return view('admin.users.create', compact('phone_numbers', 'roles'));
     }
 
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->all());
         $user->roles()->sync($request->input('roles', []));
+        $user->phone_numbers()->sync($request->input('phone_numbers', []));
         if ($request->input('avatar', false)) {
             $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('avatar'))))->toMediaCollection('avatar');
         }
@@ -115,15 +126,18 @@ class UsersController extends Controller
 
         $roles = Role::pluck('title', 'id');
 
-        $user->load('roles');
+        $phone_numbers = Phone::pluck('number', 'id');
 
-        return view('admin.users.edit', compact('roles', 'user'));
+        $user->load('roles', 'phone_numbers');
+
+        return view('admin.users.edit', compact('phone_numbers', 'roles', 'user'));
     }
 
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->all());
         $user->roles()->sync($request->input('roles', []));
+        $user->phone_numbers()->sync($request->input('phone_numbers', []));
         if ($request->input('avatar', false)) {
             if (! $user->avatar || $request->input('avatar') !== $user->avatar->file_name) {
                 if ($user->avatar) {
@@ -142,7 +156,7 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $user->load('roles', 'authorPosts', 'userUserAlerts');
+        $user->load('roles', 'phone_numbers', 'authorPosts', 'userUserAlerts');
 
         return view('admin.users.show', compact('user'));
     }

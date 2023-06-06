@@ -460,6 +460,230 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 113,
+                'title' => 'board_create',
+            ],
+            [
+                'id'    => 114,
+                'title' => 'board_edit',
+            ],
+            [
+                'id'    => 115,
+                'title' => 'board_show',
+            ],
+            [
+                'id'    => 116,
+                'title' => 'board_delete',
+            ],
+            [
+                'id'    => 117,
+                'title' => 'board_access',
+            ],
+            [
+                'id'    => 118,
+                'title' => 'board_area_access',
+            ],
+            [
+                'id'    => 119,
+                'title' => 'board_developer_area_access',
+            ],
+            [
+                'id'    => 120,
+                'title' => 'state_resident_create',
+            ],
+            [
+                'id'    => 121,
+                'title' => 'state_resident_edit',
+            ],
+            [
+                'id'    => 122,
+                'title' => 'state_resident_show',
+            ],
+            [
+                'id'    => 123,
+                'title' => 'state_resident_delete',
+            ],
+            [
+                'id'    => 124,
+                'title' => 'state_resident_access',
+            ],
+            [
+                'id'    => 125,
+                'title' => 'state_create',
+            ],
+            [
+                'id'    => 126,
+                'title' => 'state_edit',
+            ],
+            [
+                'id'    => 127,
+                'title' => 'state_show',
+            ],
+            [
+                'id'    => 128,
+                'title' => 'state_delete',
+            ],
+            [
+                'id'    => 129,
+                'title' => 'state_access',
+            ],
+            [
+                'id'    => 130,
+                'title' => 'status_type_create',
+            ],
+            [
+                'id'    => 131,
+                'title' => 'status_type_edit',
+            ],
+            [
+                'id'    => 132,
+                'title' => 'status_type_show',
+            ],
+            [
+                'id'    => 133,
+                'title' => 'status_type_delete',
+            ],
+            [
+                'id'    => 134,
+                'title' => 'status_type_access',
+            ],
+            [
+                'id'    => 135,
+                'title' => 'additional_section_access',
+            ],
+            [
+                'id'    => 136,
+                'title' => 'carrier_create',
+            ],
+            [
+                'id'    => 137,
+                'title' => 'carrier_edit',
+            ],
+            [
+                'id'    => 138,
+                'title' => 'carrier_show',
+            ],
+            [
+                'id'    => 139,
+                'title' => 'carrier_delete',
+            ],
+            [
+                'id'    => 140,
+                'title' => 'carrier_access',
+            ],
+            [
+                'id'    => 141,
+                'title' => 'chart_create',
+            ],
+            [
+                'id'    => 142,
+                'title' => 'chart_edit',
+            ],
+            [
+                'id'    => 143,
+                'title' => 'chart_show',
+            ],
+            [
+                'id'    => 144,
+                'title' => 'chart_delete',
+            ],
+            [
+                'id'    => 145,
+                'title' => 'chart_access',
+            ],
+            [
+                'id'    => 146,
+                'title' => 'phone_create',
+            ],
+            [
+                'id'    => 147,
+                'title' => 'phone_edit',
+            ],
+            [
+                'id'    => 148,
+                'title' => 'phone_show',
+            ],
+            [
+                'id'    => 149,
+                'title' => 'phone_delete',
+            ],
+            [
+                'id'    => 150,
+                'title' => 'phone_access',
+            ],
+            [
+                'id'    => 151,
+                'title' => 'agent_developer_area_access',
+            ],
+            [
+                'id'    => 152,
+                'title' => 'sponsor_create',
+            ],
+            [
+                'id'    => 153,
+                'title' => 'sponsor_edit',
+            ],
+            [
+                'id'    => 154,
+                'title' => 'sponsor_show',
+            ],
+            [
+                'id'    => 155,
+                'title' => 'sponsor_delete',
+            ],
+            [
+                'id'    => 156,
+                'title' => 'sponsor_access',
+            ],
+            [
+                'id'    => 157,
+                'title' => 'sms_template_create',
+            ],
+            [
+                'id'    => 158,
+                'title' => 'sms_template_edit',
+            ],
+            [
+                'id'    => 159,
+                'title' => 'sms_template_show',
+            ],
+            [
+                'id'    => 160,
+                'title' => 'sms_template_delete',
+            ],
+            [
+                'id'    => 161,
+                'title' => 'sms_template_access',
+            ],
+            [
+                'id'    => 162,
+                'title' => 'sms_template_default_create',
+            ],
+            [
+                'id'    => 163,
+                'title' => 'sms_template_default_edit',
+            ],
+            [
+                'id'    => 164,
+                'title' => 'sms_template_default_show',
+            ],
+            [
+                'id'    => 165,
+                'title' => 'sms_template_default_delete',
+            ],
+            [
+                'id'    => 166,
+                'title' => 'sms_template_default_access',
+            ],
+            [
+                'id'    => 167,
+                'title' => 'sponsor_area_access',
+            ],
+            [
+                'id'    => 168,
+                'title' => 'listings_area_access',
+            ],
+            [
+                'id'    => 169,
                 'title' => 'profile_password_edit',
             ],
         ];

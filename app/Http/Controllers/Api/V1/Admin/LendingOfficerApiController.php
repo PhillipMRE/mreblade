@@ -20,12 +20,13 @@ class LendingOfficerApiController extends Controller
     {
         abort_if(Gate::denies('lending_officer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new LendingOfficerResource(LendingOfficer::with(['user'])->get());
+        return new LendingOfficerResource(LendingOfficer::with(['user', 'phone_numbers', 'phone'])->get());
     }
 
     public function store(StoreLendingOfficerRequest $request)
     {
         $lendingOfficer = LendingOfficer::create($request->all());
+        $lendingOfficer->phone_numbers()->sync($request->input('phone_numbers', []));
 
         return (new LendingOfficerResource($lendingOfficer))
             ->response()
@@ -36,12 +37,13 @@ class LendingOfficerApiController extends Controller
     {
         abort_if(Gate::denies('lending_officer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new LendingOfficerResource($lendingOfficer->load(['user']));
+        return new LendingOfficerResource($lendingOfficer->load(['user', 'phone_numbers', 'phone']));
     }
 
     public function update(UpdateLendingOfficerRequest $request, LendingOfficer $lendingOfficer)
     {
         $lendingOfficer->update($request->all());
+        $lendingOfficer->phone_numbers()->sync($request->input('phone_numbers', []));
 
         return (new LendingOfficerResource($lendingOfficer))
             ->response()

@@ -25,6 +25,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.listing.fields.published') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $listing->published ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.listing.fields.full_address') }}
                         </th>
                         <td>

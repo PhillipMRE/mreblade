@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyAgentRequest;
 use App\Http\Requests\StoreAgentRequest;
 use App\Http\Requests\UpdateAgentRequest;
 use App\Models\Agent;
+use App\Models\Phone;
 use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class AgentsController extends Controller
         abort_if(Gate::denies('agent_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Agent::with(['user'])->select(sprintf('%s.*', (new Agent)->table));
+            $query = Agent::with(['user', 'phones'])->select(sprintf('%s.*', (new Agent)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -51,17 +52,22 @@ class AgentsController extends Controller
             $table->editColumn('published', function ($row) {
                 return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
             });
-            $table->editColumn('contact_phone', function ($row) {
-                return $row->contact_phone ? $row->contact_phone : '';
+            $table->editColumn('is_vetted', function ($row) {
+                return '<input type="checkbox" disabled ' . ($row->is_vetted ? 'checked' : null) . '>';
             });
             $table->editColumn('template', function ($row) {
                 return $row->template ? $row->template : '';
             });
-            $table->editColumn('is_vetted', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->is_vetted ? 'checked' : null) . '>';
+            $table->editColumn('phone', function ($row) {
+                $labels = [];
+                foreach ($row->phones as $phone) {
+                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $phone->number);
+                }
+
+                return implode(' ', $labels);
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'published', 'is_vetted']);
+            $table->rawColumns(['actions', 'placeholder', 'published', 'is_vetted', 'phone']);
 
             return $table->make(true);
         }
@@ -75,13 +81,15 @@ class AgentsController extends Controller
 
         $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.agents.create', compact('users'));
+        $phones = Phone::pluck('number', 'id');
+
+        return view('admin.agents.create', compact('phones', 'users'));
     }
 
     public function store(StoreAgentRequest $request)
     {
         $agent = Agent::create($request->all());
-
+        $agent->phones()->sync($request->input('phones', []));
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $agent->id]);
         }
@@ -95,14 +103,17 @@ class AgentsController extends Controller
 
         $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $agent->load('user');
+        $phones = Phone::pluck('number', 'id');
 
-        return view('admin.agents.edit', compact('agent', 'users'));
+        $agent->load('user', 'phones');
+
+        return view('admin.agents.edit', compact('agent', 'phones', 'users'));
     }
 
     public function update(UpdateAgentRequest $request, Agent $agent)
     {
         $agent->update($request->all());
+        $agent->phones()->sync($request->input('phones', []));
 
         return redirect()->route('admin.agents.index');
     }
@@ -111,7 +122,7 @@ class AgentsController extends Controller
     {
         abort_if(Gate::denies('agent_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $agent->load('user', 'agentClients');
+        $agent->load('user', 'phones', 'agentClients');
 
         return view('admin.agents.show', compact('agent'));
     }

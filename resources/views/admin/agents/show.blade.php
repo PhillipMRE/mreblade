@@ -33,6 +33,30 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.agent.fields.is_vetted') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $agent->is_vetted ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.agent.fields.user_confirmed_info') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $agent->user_confirmed_info ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.agent.fields.demo') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $agent->demo ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.agent.fields.user') }}
                         </th>
                         <td>
@@ -45,22 +69,6 @@
                         </th>
                         <td>
                             {{ $agent->display_name }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.agent.fields.notify_phone') }}
-                        </th>
-                        <td>
-                            {{ $agent->notify_phone }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.agent.fields.contact_phone') }}
-                        </th>
-                        <td>
-                            {{ $agent->contact_phone }}
                         </td>
                     </tr>
                     <tr>
@@ -169,14 +177,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.agent.fields.is_vetted') }}
-                        </th>
-                        <td>
-                            <input type="checkbox" disabled="disabled" {{ $agent->is_vetted ? 'checked' : '' }}>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.agent.fields.vetting_data') }}
                         </th>
                         <td>
@@ -185,18 +185,12 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.agent.fields.user_confirmed_info') }}
+                            {{ trans('cruds.agent.fields.phone') }}
                         </th>
                         <td>
-                            <input type="checkbox" disabled="disabled" {{ $agent->user_confirmed_info ? 'checked' : '' }}>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.agent.fields.demo') }}
-                        </th>
-                        <td>
-                            <input type="checkbox" disabled="disabled" {{ $agent->demo ? 'checked' : '' }}>
+                            @foreach($agent->phones as $key => $phone)
+                                <span class="label label-info">{{ $phone->number }}</span>
+                            @endforeach
                         </td>
                     </tr>
                 </tbody>

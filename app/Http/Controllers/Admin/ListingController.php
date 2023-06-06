@@ -43,11 +43,14 @@ class ListingController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : '';
             });
+            $table->editColumn('published', function ($row) {
+                return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
+            });
             $table->editColumn('full_address', function ($row) {
                 return $row->full_address ? $row->full_address : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder']);
+            $table->rawColumns(['actions', 'placeholder', 'published']);
 
             return $table->make(true);
         }

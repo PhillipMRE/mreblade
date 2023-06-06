@@ -30,10 +30,11 @@ class Client extends Model implements HasMedia
     ];
 
     protected $fillable = [
-        'name',
         'published',
         'archived',
         'claimed',
+        'suspended',
+        'name',
         'agent_id',
         'settings',
         'category',
@@ -42,7 +43,6 @@ class Client extends Model implements HasMedia
         'muted_at',
         'source',
         'sub_source',
-        'suspended',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -57,6 +57,11 @@ class Client extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
+    }
+
+    public function clientCharts()
+    {
+        return $this->hasMany(Chart::class, 'client_id', 'id');
     }
 
     public function getPhotoAttribute()
@@ -84,5 +89,10 @@ class Client extends Model implements HasMedia
     public function setMutedAtAttribute($value)
     {
         $this->attributes['muted_at'] = $value ? Carbon::createFromFormat(config('panel.date_format') . ' ' . config('panel.time_format'), $value)->format('Y-m-d H:i:s') : null;
+    }
+
+    public function phone_numbers()
+    {
+        return $this->belongsToMany(Phone::class);
     }
 }

@@ -25,6 +25,9 @@
                         {{ trans('cruds.listing.fields.id') }}
                     </th>
                     <th>
+                        {{ trans('cruds.listing.fields.published') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.listing.fields.full_address') }}
                     </th>
                     <th>
@@ -84,6 +87,7 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
+{ data: 'published', name: 'published' },
 { data: 'full_address', name: 'full_address' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],

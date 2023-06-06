@@ -20,13 +20,13 @@ class ClientApiController extends Controller
     {
         abort_if(Gate::denies('client_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ClientResource(Client::with(['agent'])->get());
+        return new ClientResource(Client::with(['agent', 'phone_numbers'])->get());
     }
 
     public function store(StoreClientRequest $request)
     {
         $client = Client::create($request->all());
-
+        $client->phone_numbers()->sync($request->input('phone_numbers', []));
         if ($request->input('photo', false)) {
             $client->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
         }
@@ -40,13 +40,13 @@ class ClientApiController extends Controller
     {
         abort_if(Gate::denies('client_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ClientResource($client->load(['agent']));
+        return new ClientResource($client->load(['agent', 'phone_numbers']));
     }
 
     public function update(UpdateClientRequest $request, Client $client)
     {
         $client->update($request->all());
-
+        $client->phone_numbers()->sync($request->input('phone_numbers', []));
         if ($request->input('photo', false)) {
             if (! $client->photo || $request->input('photo') !== $client->photo->file_name) {
                 if ($client->photo) {

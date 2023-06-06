@@ -25,19 +25,22 @@
                         {{ trans('cruds.client.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.client.fields.name') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.client.fields.published') }}
                     </th>
                     <th>
                         {{ trans('cruds.client.fields.claimed') }}
                     </th>
                     <th>
+                        {{ trans('cruds.client.fields.name') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.client.fields.photo') }}
                     </th>
                     <th>
                         {{ trans('cruds.client.fields.agent') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.client.fields.phone_numbers') }}
                     </th>
                     <th>
                         &nbsp;
@@ -96,11 +99,12 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
-{ data: 'name', name: 'name' },
 { data: 'published', name: 'published' },
 { data: 'claimed', name: 'claimed' },
+{ data: 'name', name: 'name' },
 { data: 'photo', name: 'photo', sortable: false, searchable: false },
 { data: 'agent_display_name', name: 'agent.display_name' },
+{ data: 'phone_numbers', name: 'phone_numbers.number' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

@@ -10,6 +10,21 @@
         <form method="POST" action="{{ route("admin.notes.store") }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
+                <label>{{ trans('cruds.note.fields.note_type') }}</label>
+                <select class="form-control {{ $errors->has('note_type') ? 'is-invalid' : '' }}" name="note_type" id="note_type">
+                    <option value disabled {{ old('note_type', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(App\Models\Note::NOTE_TYPE_SELECT as $key => $label)
+                        <option value="{{ $key }}" {{ old('note_type', '') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('note_type'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('note_type') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.note.fields.note_type_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="note">{{ trans('cruds.note.fields.note') }}</label>
                 <textarea class="form-control {{ $errors->has('note') ? 'is-invalid' : '' }}" name="note" id="note">{{ old('note') }}</textarea>
                 @if($errors->has('note'))

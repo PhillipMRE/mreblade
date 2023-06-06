@@ -21,12 +21,21 @@ class Note extends Model
     ];
 
     protected $fillable = [
+        'note_type',
         'note',
         'listing_id',
         'client_id',
         'created_at',
         'updated_at',
         'deleted_at',
+    ];
+
+    public const NOTE_TYPE_SELECT = [
+        'private'    => 'Board Private Note',
+        'public'     => 'Board Public Note',
+        'listing'    => 'Listing Note',
+        'seat_note'  => 'Seat History',
+        'agent_note' => 'Agent Note',
     ];
 
     protected function serializeDate(DateTimeInterface $date)

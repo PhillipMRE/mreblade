@@ -25,6 +25,9 @@
                         {{ trans('cruds.note.fields.id') }}
                     </th>
                     <th>
+                        {{ trans('cruds.note.fields.note_type') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.note.fields.note') }}
                     </th>
                     <th>
@@ -87,6 +90,7 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
+{ data: 'note_type', name: 'note_type' },
 { data: 'note', name: 'note' },
 { data: 'listing_full_address', name: 'listing.full_address' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }

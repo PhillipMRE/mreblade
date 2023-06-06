@@ -50,6 +50,7 @@ class LendingOfficer extends Model implements HasMedia
         'hubspot',
         'remote',
         'welcome_sent',
+        'phone_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -84,5 +85,15 @@ class LendingOfficer extends Model implements HasMedia
     public function setWelcomeSentAttribute($value)
     {
         $this->attributes['welcome_sent'] = $value ? Carbon::createFromFormat(config('panel.date_format') . ' ' . config('panel.time_format'), $value)->format('Y-m-d H:i:s') : null;
+    }
+
+    public function phone_numbers()
+    {
+        return $this->belongsToMany(Phone::class);
+    }
+
+    public function phone()
+    {
+        return $this->belongsTo(Phone::class, 'phone_id');
     }
 }

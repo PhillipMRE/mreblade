@@ -51,6 +51,12 @@ class StoreUserRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'phone_numbers.*' => [
+                'integer',
+            ],
+            'phone_numbers' => [
+                'array',
+            ],
         ];
     }
 }

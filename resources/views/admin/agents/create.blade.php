@@ -23,6 +23,45 @@
                 <span class="help-block">{{ trans('cruds.agent.fields.published_helper') }}</span>
             </div>
             <div class="form-group">
+                <div class="form-check {{ $errors->has('is_vetted') ? 'is-invalid' : '' }}">
+                    <input type="hidden" name="is_vetted" value="0">
+                    <input class="form-check-input" type="checkbox" name="is_vetted" id="is_vetted" value="1" {{ old('is_vetted', 0) == 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="is_vetted">{{ trans('cruds.agent.fields.is_vetted') }}</label>
+                </div>
+                @if($errors->has('is_vetted'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('is_vetted') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.agent.fields.is_vetted_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <div class="form-check {{ $errors->has('user_confirmed_info') ? 'is-invalid' : '' }}">
+                    <input type="hidden" name="user_confirmed_info" value="0">
+                    <input class="form-check-input" type="checkbox" name="user_confirmed_info" id="user_confirmed_info" value="1" {{ old('user_confirmed_info', 0) == 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="user_confirmed_info">{{ trans('cruds.agent.fields.user_confirmed_info') }}</label>
+                </div>
+                @if($errors->has('user_confirmed_info'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('user_confirmed_info') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.agent.fields.user_confirmed_info_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <div class="form-check {{ $errors->has('demo') ? 'is-invalid' : '' }}">
+                    <input type="hidden" name="demo" value="0">
+                    <input class="form-check-input" type="checkbox" name="demo" id="demo" value="1" {{ old('demo', 0) == 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="demo">{{ trans('cruds.agent.fields.demo') }}</label>
+                </div>
+                @if($errors->has('demo'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('demo') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.agent.fields.demo_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="user_id">{{ trans('cruds.agent.fields.user') }}</label>
                 <select class="form-control select2 {{ $errors->has('user') ? 'is-invalid' : '' }}" name="user_id" id="user_id">
                     @foreach($users as $id => $entry)
@@ -45,26 +84,6 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.agent.fields.display_name_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="notify_phone">{{ trans('cruds.agent.fields.notify_phone') }}</label>
-                <input class="form-control {{ $errors->has('notify_phone') ? 'is-invalid' : '' }}" type="text" name="notify_phone" id="notify_phone" value="{{ old('notify_phone', '') }}">
-                @if($errors->has('notify_phone'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('notify_phone') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.agent.fields.notify_phone_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="contact_phone">{{ trans('cruds.agent.fields.contact_phone') }}</label>
-                <input class="form-control {{ $errors->has('contact_phone') ? 'is-invalid' : '' }}" type="text" name="contact_phone" id="contact_phone" value="{{ old('contact_phone', '') }}">
-                @if($errors->has('contact_phone'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('contact_phone') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.agent.fields.contact_phone_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="timezone">{{ trans('cruds.agent.fields.timezone') }}</label>
@@ -197,19 +216,6 @@
                 <span class="help-block">{{ trans('cruds.agent.fields.template_helper') }}</span>
             </div>
             <div class="form-group">
-                <div class="form-check {{ $errors->has('is_vetted') ? 'is-invalid' : '' }}">
-                    <input type="hidden" name="is_vetted" value="0">
-                    <input class="form-check-input" type="checkbox" name="is_vetted" id="is_vetted" value="1" {{ old('is_vetted', 0) == 1 ? 'checked' : '' }}>
-                    <label class="form-check-label" for="is_vetted">{{ trans('cruds.agent.fields.is_vetted') }}</label>
-                </div>
-                @if($errors->has('is_vetted'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('is_vetted') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.agent.fields.is_vetted_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label for="vetting_data">{{ trans('cruds.agent.fields.vetting_data') }}</label>
                 <input class="form-control date {{ $errors->has('vetting_data') ? 'is-invalid' : '' }}" type="text" name="vetting_data" id="vetting_data" value="{{ old('vetting_data') }}">
                 @if($errors->has('vetting_data'))
@@ -220,30 +226,22 @@
                 <span class="help-block">{{ trans('cruds.agent.fields.vetting_data_helper') }}</span>
             </div>
             <div class="form-group">
-                <div class="form-check {{ $errors->has('user_confirmed_info') ? 'is-invalid' : '' }}">
-                    <input type="hidden" name="user_confirmed_info" value="0">
-                    <input class="form-check-input" type="checkbox" name="user_confirmed_info" id="user_confirmed_info" value="1" {{ old('user_confirmed_info', 0) == 1 ? 'checked' : '' }}>
-                    <label class="form-check-label" for="user_confirmed_info">{{ trans('cruds.agent.fields.user_confirmed_info') }}</label>
+                <label for="phones">{{ trans('cruds.agent.fields.phone') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
-                @if($errors->has('user_confirmed_info'))
+                <select class="form-control select2 {{ $errors->has('phones') ? 'is-invalid' : '' }}" name="phones[]" id="phones" multiple>
+                    @foreach($phones as $id => $phone)
+                        <option value="{{ $id }}" {{ in_array($id, old('phones', [])) ? 'selected' : '' }}>{{ $phone }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('phones'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('user_confirmed_info') }}
+                        {{ $errors->first('phones') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.agent.fields.user_confirmed_info_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <div class="form-check {{ $errors->has('demo') ? 'is-invalid' : '' }}">
-                    <input type="hidden" name="demo" value="0">
-                    <input class="form-check-input" type="checkbox" name="demo" id="demo" value="1" {{ old('demo', 0) == 1 ? 'checked' : '' }}>
-                    <label class="form-check-label" for="demo">{{ trans('cruds.agent.fields.demo') }}</label>
-                </div>
-                @if($errors->has('demo'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('demo') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.agent.fields.demo_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.agent.fields.phone_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

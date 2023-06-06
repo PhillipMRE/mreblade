@@ -9,6 +9,7 @@ use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Models\Agent;
 use App\Models\Client;
+use App\Models\Phone;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -24,7 +25,7 @@ class ClientController extends Controller
         abort_if(Gate::denies('client_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Client::with(['agent'])->select(sprintf('%s.*', (new Client)->table));
+            $query = Client::with(['agent', 'phone_numbers'])->select(sprintf('%s.*', (new Client)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -48,14 +49,14 @@ class ClientController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : '';
             });
-            $table->editColumn('name', function ($row) {
-                return $row->name ? $row->name : '';
-            });
             $table->editColumn('published', function ($row) {
                 return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
             });
             $table->editColumn('claimed', function ($row) {
                 return '<input type="checkbox" disabled ' . ($row->claimed ? 'checked' : null) . '>';
+            });
+            $table->editColumn('name', function ($row) {
+                return $row->name ? $row->name : '';
             });
             $table->editColumn('photo', function ($row) {
                 if ($photo = $row->photo) {
@@ -72,7 +73,16 @@ class ClientController extends Controller
                 return $row->agent ? $row->agent->display_name : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'published', 'claimed', 'photo', 'agent']);
+            $table->editColumn('phone_numbers', function ($row) {
+                $labels = [];
+                foreach ($row->phone_numbers as $phone_number) {
+                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $phone_number->number);
+                }
+
+                return implode(' ', $labels);
+            });
+
+            $table->rawColumns(['actions', 'placeholder', 'published', 'claimed', 'photo', 'agent', 'phone_numbers']);
 
             return $table->make(true);
         }
@@ -86,13 +96,15 @@ class ClientController extends Controller
 
         $agents = Agent::pluck('display_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.clients.create', compact('agents'));
+        $phone_numbers = Phone::pluck('number', 'id');
+
+        return view('admin.clients.create', compact('agents', 'phone_numbers'));
     }
 
     public function store(StoreClientRequest $request)
     {
         $client = Client::create($request->all());
-
+        $client->phone_numbers()->sync($request->input('phone_numbers', []));
         if ($request->input('photo', false)) {
             $client->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
         }
@@ -110,15 +122,17 @@ class ClientController extends Controller
 
         $agents = Agent::pluck('display_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $client->load('agent');
+        $phone_numbers = Phone::pluck('number', 'id');
 
-        return view('admin.clients.edit', compact('agents', 'client'));
+        $client->load('agent', 'phone_numbers');
+
+        return view('admin.clients.edit', compact('agents', 'client', 'phone_numbers'));
     }
 
     public function update(UpdateClientRequest $request, Client $client)
     {
         $client->update($request->all());
-
+        $client->phone_numbers()->sync($request->input('phone_numbers', []));
         if ($request->input('photo', false)) {
             if (! $client->photo || $request->input('photo') !== $client->photo->file_name) {
                 if ($client->photo) {
@@ -137,7 +151,7 @@ class ClientController extends Controller
     {
         abort_if(Gate::denies('client_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $client->load('agent');
+        $client->load('agent', 'phone_numbers', 'clientCharts');
 
         return view('admin.clients.show', compact('client'));
     }

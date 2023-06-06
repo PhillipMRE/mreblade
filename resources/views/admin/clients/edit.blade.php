@@ -11,16 +11,6 @@
             @method('PUT')
             @csrf
             <div class="form-group">
-                <label for="name">{{ trans('cruds.client.fields.name') }}</label>
-                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $client->name) }}">
-                @if($errors->has('name'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('name') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.client.fields.name_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <div class="form-check {{ $errors->has('published') ? 'is-invalid' : '' }}">
                     <input type="hidden" name="published" value="0">
                     <input class="form-check-input" type="checkbox" name="published" id="published" value="1" {{ $client->published || old('published', 0) === 1 ? 'checked' : '' }}>
@@ -58,6 +48,29 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.client.fields.claimed_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <div class="form-check {{ $errors->has('suspended') ? 'is-invalid' : '' }}">
+                    <input type="hidden" name="suspended" value="0">
+                    <input class="form-check-input" type="checkbox" name="suspended" id="suspended" value="1" {{ $client->suspended || old('suspended', 0) === 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="suspended">{{ trans('cruds.client.fields.suspended') }}</label>
+                </div>
+                @if($errors->has('suspended'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('suspended') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.client.fields.suspended_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="name">{{ trans('cruds.client.fields.name') }}</label>
+                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $client->name) }}">
+                @if($errors->has('name'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('name') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.client.fields.name_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="photo">{{ trans('cruds.client.fields.photo') }}</label>
@@ -155,17 +168,22 @@
                 <span class="help-block">{{ trans('cruds.client.fields.sub_source_helper') }}</span>
             </div>
             <div class="form-group">
-                <div class="form-check {{ $errors->has('suspended') ? 'is-invalid' : '' }}">
-                    <input type="hidden" name="suspended" value="0">
-                    <input class="form-check-input" type="checkbox" name="suspended" id="suspended" value="1" {{ $client->suspended || old('suspended', 0) === 1 ? 'checked' : '' }}>
-                    <label class="form-check-label" for="suspended">{{ trans('cruds.client.fields.suspended') }}</label>
+                <label for="phone_numbers">{{ trans('cruds.client.fields.phone_numbers') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
-                @if($errors->has('suspended'))
+                <select class="form-control select2 {{ $errors->has('phone_numbers') ? 'is-invalid' : '' }}" name="phone_numbers[]" id="phone_numbers" multiple>
+                    @foreach($phone_numbers as $id => $phone_number)
+                        <option value="{{ $id }}" {{ (in_array($id, old('phone_numbers', [])) || $client->phone_numbers->contains($id)) ? 'selected' : '' }}>{{ $phone_number }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('phone_numbers'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('suspended') }}
+                        {{ $errors->first('phone_numbers') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.client.fields.suspended_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.client.fields.phone_numbers_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

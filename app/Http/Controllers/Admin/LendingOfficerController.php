@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyLendingOfficerRequest;
 use App\Http\Requests\StoreLendingOfficerRequest;
 use App\Http\Requests\UpdateLendingOfficerRequest;
 use App\Models\LendingOfficer;
+use App\Models\Phone;
 use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class LendingOfficerController extends Controller
         abort_if(Gate::denies('lending_officer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = LendingOfficer::with(['user'])->select(sprintf('%s.*', (new LendingOfficer)->table));
+            $query = LendingOfficer::with(['user', 'phone_numbers', 'phone'])->select(sprintf('%s.*', (new LendingOfficer)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -57,8 +58,23 @@ class LendingOfficerController extends Controller
             $table->editColumn('template', function ($row) {
                 return $row->template ? $row->template : '';
             });
+            $table->editColumn('phone_numbers', function ($row) {
+                $labels = [];
+                foreach ($row->phone_numbers as $phone_number) {
+                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $phone_number->number);
+                }
 
-            $table->rawColumns(['actions', 'placeholder', 'published']);
+                return implode(' ', $labels);
+            });
+            $table->addColumn('phone_number', function ($row) {
+                return $row->phone ? $row->phone->number : '';
+            });
+
+            $table->editColumn('phone.phone_type', function ($row) {
+                return $row->phone ? (is_string($row->phone) ? $row->phone : $row->phone->phone_type) : '';
+            });
+
+            $table->rawColumns(['actions', 'placeholder', 'published', 'phone_numbers', 'phone']);
 
             return $table->make(true);
         }
@@ -72,13 +88,17 @@ class LendingOfficerController extends Controller
 
         $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.lendingOfficers.create', compact('users'));
+        $phone_numbers = Phone::pluck('number', 'id');
+
+        $phones = Phone::pluck('number', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.lendingOfficers.create', compact('phone_numbers', 'phones', 'users'));
     }
 
     public function store(StoreLendingOfficerRequest $request)
     {
         $lendingOfficer = LendingOfficer::create($request->all());
-
+        $lendingOfficer->phone_numbers()->sync($request->input('phone_numbers', []));
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $lendingOfficer->id]);
         }
@@ -92,14 +112,19 @@ class LendingOfficerController extends Controller
 
         $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $lendingOfficer->load('user');
+        $phone_numbers = Phone::pluck('number', 'id');
 
-        return view('admin.lendingOfficers.edit', compact('lendingOfficer', 'users'));
+        $phones = Phone::pluck('number', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $lendingOfficer->load('user', 'phone_numbers', 'phone');
+
+        return view('admin.lendingOfficers.edit', compact('lendingOfficer', 'phone_numbers', 'phones', 'users'));
     }
 
     public function update(UpdateLendingOfficerRequest $request, LendingOfficer $lendingOfficer)
     {
         $lendingOfficer->update($request->all());
+        $lendingOfficer->phone_numbers()->sync($request->input('phone_numbers', []));
 
         return redirect()->route('admin.lending-officers.index');
     }
@@ -108,7 +133,7 @@ class LendingOfficerController extends Controller
     {
         abort_if(Gate::denies('lending_officer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $lendingOfficer->load('user', 'lendingOfficerCustomers');
+        $lendingOfficer->load('user', 'phone_numbers', 'phone', 'lendingOfficerCustomers');
 
         return view('admin.lendingOfficers.show', compact('lendingOfficer'));
     }
