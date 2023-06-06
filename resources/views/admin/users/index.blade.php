@@ -35,9 +35,6 @@
                         {{ trans('cruds.user.fields.name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.approved') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.user.fields.verified') }}
                     </th>
                     <th>
@@ -108,7 +105,6 @@
 { data: 'id', name: 'id' },
 { data: 'avatar', name: 'avatar', sortable: false, searchable: false },
 { data: 'name', name: 'name' },
-{ data: 'approved', name: 'approved' },
 { data: 'verified', name: 'verified' },
 { data: 'phone', name: 'phone' },
 { data: 'email', name: 'email' },

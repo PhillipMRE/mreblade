@@ -13,7 +13,6 @@ class CreateUsersTable extends Migration
             $table->string('name')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->boolean('approved')->default(0)->nullable();
             $table->boolean('verified')->default(0)->nullable();
             $table->datetime('verified_at')->nullable();
             $table->string('verification_token')->nullable();

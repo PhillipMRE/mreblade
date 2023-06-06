@@ -81,8 +81,6 @@ return [
             'phone_helper'                 => ' ',
             'phone_numbers'                => 'Phone Numbers',
             'phone_numbers_helper'         => ' ',
-            'approved'                     => 'Approved',
-            'approved_helper'              => ' ',
             'verified'                     => 'Verified',
             'verified_helper'              => ' ',
             'verified_at'                  => 'Verified at',

@@ -46,7 +46,6 @@ class User extends Authenticatable implements HasMedia
         'name',
         'first_name',
         'last_name',
-        'approved',
         'verified',
         'verified_at',
         'verification_token',

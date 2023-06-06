@@ -64,9 +64,6 @@ class UsersController extends Controller
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
             });
-            $table->editColumn('approved', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->approved ? 'checked' : null) . '>';
-            });
             $table->editColumn('verified', function ($row) {
                 return '<input type="checkbox" disabled ' . ($row->verified ? 'checked' : null) . '>';
             });
@@ -85,7 +82,7 @@ class UsersController extends Controller
                 return implode(' ', $labels);
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'avatar', 'approved', 'verified', 'roles']);
+            $table->rawColumns(['actions', 'placeholder', 'avatar', 'verified', 'roles']);
 
             return $table->make(true);
         }
