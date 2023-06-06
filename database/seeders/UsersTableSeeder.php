@@ -20,9 +20,8 @@ class UsersTableSeeder extends Seeder
                 'verified_at'        => '2023-06-06 22:00:43',
                 'two_factor_code'    => '',
                 'slug'               => '',
-                'first_name'         => '',
-                'last_name'          => '',
-                'phone'              => '',
+                'first_name'         => 'Phillip',
+                'last_name'          => 'Madsen',
                 'verification_token' => '',
             ],
             [
@@ -37,7 +36,6 @@ class UsersTableSeeder extends Seeder
                 'slug'               => '',
                 'first_name'         => '',
                 'last_name'          => '',
-                'phone'              => '',
                 'verification_token' => '',
             ],
             [
@@ -52,7 +50,6 @@ class UsersTableSeeder extends Seeder
                 'slug'               => '',
                 'first_name'         => '',
                 'last_name'          => '',
-                'phone'              => '',
                 'verification_token' => '',
             ],
             [
@@ -67,7 +64,6 @@ class UsersTableSeeder extends Seeder
                 'slug'               => '',
                 'first_name'         => '',
                 'last_name'          => '',
-                'phone'              => '',
                 'verification_token' => '',
             ],
             [
@@ -82,7 +78,6 @@ class UsersTableSeeder extends Seeder
                 'slug'               => '',
                 'first_name'         => '',
                 'last_name'          => '',
-                'phone'              => '',
                 'verification_token' => '',
             ],
         ];
