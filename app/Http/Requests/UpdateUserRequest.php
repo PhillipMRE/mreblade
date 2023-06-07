@@ -29,13 +29,15 @@ class UpdateUserRequest extends FormRequest
                 'string',
                 'nullable',
             ],
-            'phone' => [
-                'string',
-                'nullable',
-            ],
             'email' => [
                 'required',
                 'unique:users,email,' . request()->route('user')->id,
+            ],
+            'phone_numbers.*' => [
+                'integer',
+            ],
+            'phone_numbers' => [
+                'array',
             ],
             'roles.*' => [
                 'integer',
@@ -47,12 +49,6 @@ class UpdateUserRequest extends FormRequest
             'slug' => [
                 'string',
                 'nullable',
-            ],
-            'phone_numbers.*' => [
-                'integer',
-            ],
-            'phone_numbers' => [
-                'array',
             ],
         ];
     }

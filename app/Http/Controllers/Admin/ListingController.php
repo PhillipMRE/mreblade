@@ -49,6 +49,9 @@ class ListingController extends Controller
             $table->editColumn('full_address', function ($row) {
                 return $row->full_address ? $row->full_address : '';
             });
+            $table->editColumn('house_type', function ($row) {
+                return $row->house_type ? $row->house_type : '';
+            });
 
             $table->rawColumns(['actions', 'placeholder', 'published']);
 

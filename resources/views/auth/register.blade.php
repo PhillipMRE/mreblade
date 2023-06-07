@@ -19,7 +19,7 @@
                                 <i class="fa fa-user fa-fw"></i>
                             </span>
                         </div>
-                        <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" required autofocus placeholder="{{ trans('global.user_name') }}" value="{{ old('name', null) }}">
+                        <input type="text" id="name" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" required autofocus placeholder="{{ trans('global.user_name') }}" value="{{ old('name', null) }}" oninput="splitName()">
                         @if($errors->has('name'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('name') }}
@@ -64,6 +64,9 @@
                         <input type="password" name="password_confirmation" class="form-control" required placeholder="{{ trans('global.login_password_confirmation') }}">
                     </div>
 
+                    <input type="hidden" name="first_name" id="first_name" value="">
+                    <input type="hidden" name="last_name" id="last_name" value="">
+
                     <button class="btn btn-block btn-primary">
                         {{ trans('global.register') }}
                     </button>
@@ -74,5 +77,27 @@
 
     </div>
 </div>
+
+@endsection
+
+@section('scripts')
+
+<script>
+    function splitName() {
+      var fullNameInput = document.getElementById("name");
+      var firstNameInput = document.getElementById("first_name");
+      var lastNameInput = document.getElementById("last_name");
+
+      var fullName = fullNameInput.value.trim();
+
+      var names = fullName.split(" ");
+
+      var firstName = names.shift();
+      var lastName = names.join(" ");
+
+      firstNameInput.value = firstName;
+      lastNameInput.value = lastName;
+    }
+</script>
 
 @endsection

@@ -78,16 +78,6 @@
                 <span class="help-block">{{ trans('cruds.lendingOfficer.fields.timezone_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="call_line">{{ trans('cruds.lendingOfficer.fields.call_line') }}</label>
-                <input class="form-control {{ $errors->has('call_line') ? 'is-invalid' : '' }}" type="text" name="call_line" id="call_line" value="{{ old('call_line', $lendingOfficer->call_line) }}">
-                @if($errors->has('call_line'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('call_line') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.lendingOfficer.fields.call_line_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label for="biography">{{ trans('cruds.lendingOfficer.fields.biography') }}</label>
                 <textarea class="form-control ckeditor {{ $errors->has('biography') ? 'is-invalid' : '' }}" name="biography" id="biography">{!! old('biography', $lendingOfficer->biography) !!}</textarea>
                 @if($errors->has('biography'))
@@ -106,6 +96,16 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.lendingOfficer.fields.license_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="callout_text">{{ trans('cruds.lendingOfficer.fields.callout_text') }}</label>
+                <input class="form-control {{ $errors->has('callout_text') ? 'is-invalid' : '' }}" type="text" name="callout_text" id="callout_text" value="{{ old('callout_text', $lendingOfficer->callout_text) }}">
+                @if($errors->has('callout_text'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('callout_text') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.lendingOfficer.fields.callout_text_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="website">{{ trans('cruds.lendingOfficer.fields.website') }}</label>

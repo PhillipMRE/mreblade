@@ -34,13 +34,7 @@
                             {{ trans('cruds.client.fields.name') }}
                         </th>
                         <th>
-                            {{ trans('cruds.client.fields.photo') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.client.fields.agent') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.client.fields.phone_numbers') }}
                         </th>
                         <th>
                             &nbsp;
@@ -68,19 +62,7 @@
                                 {{ $client->name ?? '' }}
                             </td>
                             <td>
-                                @if($client->photo)
-                                    <a href="{{ $client->photo->getUrl() }}" target="_blank" style="display: inline-block">
-                                        <img src="{{ $client->photo->getUrl('thumb') }}">
-                                    </a>
-                                @endif
-                            </td>
-                            <td>
                                 {{ $client->agent->display_name ?? '' }}
-                            </td>
-                            <td>
-                                @foreach($client->phone_numbers as $key => $item)
-                                    <span class="badge badge-info">{{ $item->number }}</span>
-                                @endforeach
                             </td>
                             <td>
                                 @can('client_show')

@@ -52,29 +52,14 @@ class LendingOfficerController extends Controller
             $table->editColumn('published', function ($row) {
                 return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
             });
+            $table->editColumn('display_name', function ($row) {
+                return $row->display_name ? $row->display_name : '';
+            });
             $table->editColumn('contact_phone', function ($row) {
                 return $row->contact_phone ? $row->contact_phone : '';
             });
-            $table->editColumn('template', function ($row) {
-                return $row->template ? $row->template : '';
-            });
-            $table->editColumn('phone_numbers', function ($row) {
-                $labels = [];
-                foreach ($row->phone_numbers as $phone_number) {
-                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $phone_number->number);
-                }
 
-                return implode(' ', $labels);
-            });
-            $table->addColumn('phone_number', function ($row) {
-                return $row->phone ? $row->phone->number : '';
-            });
-
-            $table->editColumn('phone.phone_type', function ($row) {
-                return $row->phone ? (is_string($row->phone) ? $row->phone : $row->phone->phone_type) : '';
-            });
-
-            $table->rawColumns(['actions', 'placeholder', 'published', 'phone_numbers', 'phone']);
+            $table->rawColumns(['actions', 'placeholder', 'published']);
 
             return $table->make(true);
         }

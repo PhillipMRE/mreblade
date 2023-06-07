@@ -28,13 +28,7 @@
                         {{ trans('cruds.agent.fields.published') }}
                     </th>
                     <th>
-                        {{ trans('cruds.agent.fields.is_vetted') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.agent.fields.template') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.agent.fields.phone') }}
+                        {{ trans('cruds.agent.fields.display_name') }}
                     </th>
                     <th>
                         &nbsp;
@@ -94,9 +88,7 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'published', name: 'published' },
-{ data: 'is_vetted', name: 'is_vetted' },
-{ data: 'template', name: 'template' },
-{ data: 'phone', name: 'phones.number' },
+{ data: 'display_name', name: 'display_name' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

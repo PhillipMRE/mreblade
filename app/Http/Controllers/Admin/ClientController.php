@@ -58,31 +58,11 @@ class ClientController extends Controller
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
             });
-            $table->editColumn('photo', function ($row) {
-                if ($photo = $row->photo) {
-                    return sprintf(
-                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-                        $photo->url,
-                        $photo->thumbnail
-                    );
-                }
-
-                return '';
-            });
             $table->addColumn('agent_display_name', function ($row) {
                 return $row->agent ? $row->agent->display_name : '';
             });
 
-            $table->editColumn('phone_numbers', function ($row) {
-                $labels = [];
-                foreach ($row->phone_numbers as $phone_number) {
-                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $phone_number->number);
-                }
-
-                return implode(' ', $labels);
-            });
-
-            $table->rawColumns(['actions', 'placeholder', 'published', 'claimed', 'photo', 'agent', 'phone_numbers']);
+            $table->rawColumns(['actions', 'placeholder', 'published', 'claimed', 'agent']);
 
             return $table->make(true);
         }

@@ -73,14 +73,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.lendingOfficer.fields.call_line') }}
-                        </th>
-                        <td>
-                            {{ $lendingOfficer->call_line }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.lendingOfficer.fields.biography') }}
                         </th>
                         <td>
@@ -93,6 +85,14 @@
                         </th>
                         <td>
                             {{ $lendingOfficer->license }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.lendingOfficer.fields.callout_text') }}
+                        </th>
+                        <td>
+                            {{ $lendingOfficer->callout_text }}
                         </td>
                     </tr>
                     <tr>

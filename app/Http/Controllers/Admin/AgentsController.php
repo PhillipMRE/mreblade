@@ -52,22 +52,11 @@ class AgentsController extends Controller
             $table->editColumn('published', function ($row) {
                 return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
             });
-            $table->editColumn('is_vetted', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->is_vetted ? 'checked' : null) . '>';
-            });
-            $table->editColumn('template', function ($row) {
-                return $row->template ? $row->template : '';
-            });
-            $table->editColumn('phone', function ($row) {
-                $labels = [];
-                foreach ($row->phones as $phone) {
-                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $phone->number);
-                }
-
-                return implode(' ', $labels);
+            $table->editColumn('display_name', function ($row) {
+                return $row->display_name ? $row->display_name : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'published', 'is_vetted', 'phone']);
+            $table->rawColumns(['actions', 'placeholder', 'published']);
 
             return $table->make(true);
         }

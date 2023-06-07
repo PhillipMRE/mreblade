@@ -49,7 +49,6 @@ class User extends Authenticatable implements HasMedia
         'verified',
         'verified_at',
         'verification_token',
-        'phone',
         'email',
         'email_verified_at',
         'password',
@@ -157,6 +156,11 @@ class User extends Authenticatable implements HasMedia
         $this->attributes['verified_at'] = $value ? Carbon::createFromFormat(config('panel.date_format') . ' ' . config('panel.time_format'), $value)->format('Y-m-d H:i:s') : null;
     }
 
+    public function phone_numbers()
+    {
+        return $this->belongsToMany(Phone::class);
+    }
+
     public function getEmailVerifiedAtAttribute($value)
     {
         return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('panel.date_format') . ' ' . config('panel.time_format')) : null;
@@ -182,11 +186,6 @@ class User extends Authenticatable implements HasMedia
     public function roles()
     {
         return $this->belongsToMany(Role::class);
-    }
-
-    public function phone_numbers()
-    {
-        return $this->belongsToMany(Phone::class);
     }
 
     public function getTwoFactorExpiresAtAttribute($value)

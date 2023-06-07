@@ -81,14 +81,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.agent.fields.call_line') }}
-                        </th>
-                        <td>
-                            {{ $agent->call_line }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.agent.fields.biography') }}
                         </th>
                         <td>
@@ -191,6 +183,14 @@
                             @foreach($agent->phones as $key => $phone)
                                 <span class="label label-info">{{ $phone->number }}</span>
                             @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.agent.fields.callout_text') }}
+                        </th>
+                        <td>
+                            {{ $agent->callout_text }}
                         </td>
                     </tr>
                 </tbody>

@@ -29,13 +29,15 @@ class StoreUserRequest extends FormRequest
                 'string',
                 'nullable',
             ],
-            'phone' => [
-                'string',
-                'nullable',
-            ],
             'email' => [
                 'required',
                 'unique:users',
+            ],
+            'phone_numbers.*' => [
+                'integer',
+            ],
+            'phone_numbers' => [
+                'array',
             ],
             'password' => [
                 'required',
@@ -50,12 +52,6 @@ class StoreUserRequest extends FormRequest
             'slug' => [
                 'string',
                 'nullable',
-            ],
-            'phone_numbers.*' => [
-                'integer',
-            ],
-            'phone_numbers' => [
-                'array',
             ],
         ];
     }

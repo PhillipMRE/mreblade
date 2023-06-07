@@ -20,14 +20,14 @@ class UsersApiController extends Controller
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new UserResource(User::with(['roles', 'phone_numbers'])->get());
+        return new UserResource(User::with(['phone_numbers', 'roles'])->get());
     }
 
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->all());
-        $user->roles()->sync($request->input('roles', []));
         $user->phone_numbers()->sync($request->input('phone_numbers', []));
+        $user->roles()->sync($request->input('roles', []));
         if ($request->input('avatar', false)) {
             $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('avatar'))))->toMediaCollection('avatar');
         }
@@ -41,14 +41,14 @@ class UsersApiController extends Controller
     {
         abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new UserResource($user->load(['roles', 'phone_numbers']));
+        return new UserResource($user->load(['phone_numbers', 'roles']));
     }
 
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->all());
-        $user->roles()->sync($request->input('roles', []));
         $user->phone_numbers()->sync($request->input('phone_numbers', []));
+        $user->roles()->sync($request->input('roles', []));
         if ($request->input('avatar', false)) {
             if (! $user->avatar || $request->input('avatar') !== $user->avatar->file_name) {
                 if ($user->avatar) {

@@ -33,11 +33,11 @@ class UpdateLendingOfficerRequest extends FormRequest
                 'string',
                 'nullable',
             ],
-            'call_line' => [
+            'license' => [
                 'string',
                 'nullable',
             ],
-            'license' => [
+            'callout_text' => [
                 'string',
                 'nullable',
             ],

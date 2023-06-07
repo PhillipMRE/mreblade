@@ -25,10 +25,6 @@ class StoreAgentRequest extends FormRequest
                 'string',
                 'nullable',
             ],
-            'call_line' => [
-                'string',
-                'nullable',
-            ],
             'license' => [
                 'string',
                 'nullable',
@@ -74,6 +70,10 @@ class StoreAgentRequest extends FormRequest
             ],
             'phones' => [
                 'array',
+            ],
+            'callout_text' => [
+                'string',
+                'nullable',
             ],
         ];
     }

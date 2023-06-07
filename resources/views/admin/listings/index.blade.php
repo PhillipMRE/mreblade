@@ -31,6 +31,9 @@
                         {{ trans('cruds.listing.fields.full_address') }}
                     </th>
                     <th>
+                        {{ trans('cruds.listing.fields.house_type') }}
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -89,6 +92,7 @@
 { data: 'id', name: 'id' },
 { data: 'published', name: 'published' },
 { data: 'full_address', name: 'full_address' },
+{ data: 'house_type', name: 'house_type' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

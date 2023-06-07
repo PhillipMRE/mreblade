@@ -38,9 +38,6 @@
                         {{ trans('cruds.user.fields.verified') }}
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.phone') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.user.fields.email') }}
                     </th>
                     <th>
@@ -106,7 +103,6 @@
 { data: 'avatar', name: 'avatar', sortable: false, searchable: false },
 { data: 'name', name: 'name' },
 { data: 'verified', name: 'verified' },
-{ data: 'phone', name: 'phone' },
 { data: 'email', name: 'email' },
 { data: 'roles', name: 'roles.title' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }

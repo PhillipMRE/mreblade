@@ -44,12 +44,6 @@ class Keyword extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public static function boot()
-    {
-        parent::boot();
-        self::observe(new \App\Observers\KeywordActionObserver);
-    }
-
     public function agents()
     {
         return $this->belongsToMany(Agent::class);

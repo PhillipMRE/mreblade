@@ -69,18 +69,20 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.user.fields.phone') }}
-                        </th>
-                        <td>
-                            {{ $user->phone }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.user.fields.email') }}
                         </th>
                         <td>
                             {{ $user->email }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.phone_numbers') }}
+                        </th>
+                        <td>
+                            @foreach($user->phone_numbers as $key => $phone_numbers)
+                                <span class="label label-info">{{ $phone_numbers->number }}</span>
+                            @endforeach
                         </td>
                     </tr>
                     <tr>
@@ -115,16 +117,6 @@
                         </th>
                         <td>
                             {{ $user->slug }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.user.fields.phone_numbers') }}
-                        </th>
-                        <td>
-                            @foreach($user->phone_numbers as $key => $phone_numbers)
-                                <span class="label label-info">{{ $phone_numbers->number }}</span>
-                            @endforeach
                         </td>
                     </tr>
                 </tbody>

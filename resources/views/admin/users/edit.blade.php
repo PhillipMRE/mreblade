@@ -52,16 +52,6 @@
                 <span class="help-block">{{ trans('cruds.user.fields.last_name_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="phone">{{ trans('cruds.user.fields.phone') }}</label>
-                <input class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" type="text" name="phone" id="phone" value="{{ old('phone', $user->phone) }}">
-                @if($errors->has('phone'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('phone') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.user.fields.phone_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label class="required" for="email">{{ trans('cruds.user.fields.email') }}</label>
                 <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email" id="email" value="{{ old('email', $user->email) }}" required>
                 @if($errors->has('email'))
@@ -70,6 +60,24 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.email_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="phone_numbers">{{ trans('cruds.user.fields.phone_numbers') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('phone_numbers') ? 'is-invalid' : '' }}" name="phone_numbers[]" id="phone_numbers" multiple>
+                    @foreach($phone_numbers as $id => $phone_number)
+                        <option value="{{ $id }}" {{ (in_array($id, old('phone_numbers', [])) || $user->phone_numbers->contains($id)) ? 'selected' : '' }}>{{ $phone_number }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('phone_numbers'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('phone_numbers') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.user.fields.phone_numbers_helper') }}</span>
             </div>
             <div class="form-group">
                 <label class="required" for="password">{{ trans('cruds.user.fields.password') }}</label>
@@ -108,24 +116,6 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.slug_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="phone_numbers">{{ trans('cruds.user.fields.phone_numbers') }}</label>
-                <div style="padding-bottom: 4px">
-                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
-                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
-                </div>
-                <select class="form-control select2 {{ $errors->has('phone_numbers') ? 'is-invalid' : '' }}" name="phone_numbers[]" id="phone_numbers" multiple>
-                    @foreach($phone_numbers as $id => $phone_number)
-                        <option value="{{ $id }}" {{ (in_array($id, old('phone_numbers', [])) || $user->phone_numbers->contains($id)) ? 'selected' : '' }}>{{ $phone_number }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('phone_numbers'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('phone_numbers') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.user.fields.phone_numbers_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
