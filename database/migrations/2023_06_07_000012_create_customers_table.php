@@ -13,7 +13,7 @@ class CreateCustomersTable extends Migration
             $table->boolean('active')->default(0)->nullable();
             $table->boolean('published')->default(0)->nullable();
             $table->string('name')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('rates')->nullable();
             $table->string('email')->nullable();
             $table->string('technical_contact_email')->nullable();
@@ -23,16 +23,17 @@ class CreateCustomersTable extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('zip')->nullable();
-            $table->string('website')->nullable();
+            $table->longText('website')->nullable();
             $table->longText('template')->nullable();
             $table->string('level')->nullable();
-            $table->string('settings')->nullable();
             $table->longText('disclosure')->nullable();
             $table->longText('estimated_mortgage_disclosure')->nullable();
             $table->string('hubspot')->nullable();
             $table->boolean('block_mre')->default(0)->nullable();
             $table->integer('block_login_as')->nullable();
             $table->boolean('ep')->default(0)->nullable();
+            $table->string('fusebill')->nullable();
+            $table->longText('settings')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
