@@ -63,6 +63,34 @@ return [
             ]) : [],
         ],
 
+        'mysql-old' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('HOST', 'restoredmyhomeOLD.czksyf4wjvql.us-east-1.rds.amazonaws.com'),
+            'port' => env('PORT', '3306'),
+            'database' => env('DATABASE', 'mrelin_dev'),
+            'username' => env('USERNAME', 'mreroot'),
+            'password' => env('PASSWORD', 'c0mp0n3nt'),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+            'dump' => [
+                //'dump_binary_path' => '/path/to/the/binary', // only the path, so without `mysqldump` or `pg_dump`
+                'dump_binary_path' => '/usr/bin',
+                'use_single_transaction',
+                'timeout' => 60 * 5, // 5 minute timeout
+                'exclude_tables' => [],
+                'add_extra_option' => '--skip-add-locks --skip-lock-tables --skip-add-drop-table --complete-insert --create-options',
+            ],
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),

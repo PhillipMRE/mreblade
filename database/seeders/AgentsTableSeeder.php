@@ -28,7 +28,7 @@ class AgentsTableSeeder extends Seeder
                 'demo' => 0,
                 'display_name' => 'Phillip Madsen',
                 'timezone' => NULL,
-                'call_line' => NULL,
+                'callout_text' => NULL,
                 'biography' => NULL,
                 'license' => NULL,
                 'website' => 'https://bootybooty.io',
