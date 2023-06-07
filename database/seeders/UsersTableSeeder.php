@@ -80,6 +80,20 @@ class UsersTableSeeder extends Seeder
                 'last_name'          => '',
                 'verification_token' => '',
             ],
+            [
+                'id'                 => 6,
+                'name'               => 'Adam Prows',
+                'email'              => 'adam.prows@mmi.io',
+                'password'           => bcrypt('password'),
+                'remember_token'     => null,
+                'verified'           => 1,
+                'verified_at'        => '2023-06-06 22:00:43',
+                'two_factor_code'    => '',
+                'slug'               => '',
+                'first_name'         => '',
+                'last_name'          => '',
+                'verification_token' => '',
+            ],
         ];
 
         User::insert($users);
