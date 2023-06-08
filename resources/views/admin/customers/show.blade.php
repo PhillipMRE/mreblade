@@ -41,10 +41,12 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.customer.fields.lending_officer') }}
+                            {{ trans('cruds.customer.fields.clients') }}
                         </th>
                         <td>
-                            {{ $customer->lending_officer->display_name ?? '' }}
+                            @foreach($customer->clients as $key => $clients)
+                                <span class="label label-info">{{ $clients->name }}</span>
+                            @endforeach
                         </td>
                     </tr>
                     <tr>
@@ -137,14 +139,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.customer.fields.website') }}
-                        </th>
-                        <td>
-                            {{ $customer->website }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.customer.fields.template') }}
                         </th>
                         <td>
@@ -157,14 +151,6 @@
                         </th>
                         <td>
                             {{ $customer->level }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.customer.fields.settings') }}
-                        </th>
-                        <td>
-                            {{ $customer->settings }}
                         </td>
                     </tr>
                     <tr>
@@ -213,6 +199,30 @@
                         </th>
                         <td>
                             <input type="checkbox" disabled="disabled" {{ $customer->ep ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.customer.fields.fusebill') }}
+                        </th>
+                        <td>
+                            {{ $customer->fusebill }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.customer.fields.settings') }}
+                        </th>
+                        <td>
+                            {{ $customer->settings }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.customer.fields.website') }}
+                        </th>
+                        <td>
+                            {{ $customer->website }}
                         </td>
                     </tr>
                 </tbody>

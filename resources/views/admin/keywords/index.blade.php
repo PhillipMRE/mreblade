@@ -28,6 +28,15 @@
                         {{ trans('cruds.keyword.fields.name') }}
                     </th>
                     <th>
+                        {{ trans('cruds.keyword.fields.house_types') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.keyword.fields.agents') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.keyword.fields.customer') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.keyword.fields.active') }}
                     </th>
                     <th>
@@ -88,6 +97,9 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
+{ data: 'house_types', name: 'house_types' },
+{ data: 'agents', name: 'agents.display_name' },
+{ data: 'customer_name', name: 'customer.name' },
 { data: 'active', name: 'active' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],

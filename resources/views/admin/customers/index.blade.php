@@ -35,13 +35,16 @@
                         {{ trans('cruds.customer.fields.published') }}
                     </th>
                     <th>
+                        {{ trans('cruds.customer.fields.clients') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.customer.fields.name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.customer.fields.phone') }}
+                        {{ trans('cruds.customer.fields.technical_contact_email') }}
                     </th>
                     <th>
-                        {{ trans('cruds.customer.fields.license') }}
+                        {{ trans('cruds.customer.fields.phone') }}
                     </th>
                     <th>
                         {{ trans('cruds.customer.fields.city') }}
@@ -108,9 +111,10 @@
 { data: 'id', name: 'id' },
 { data: 'active', name: 'active' },
 { data: 'published', name: 'published' },
+{ data: 'clients', name: 'clients.name' },
 { data: 'name', name: 'name' },
+{ data: 'technical_contact_email', name: 'technical_contact_email' },
 { data: 'phone', name: 'phone' },
-{ data: 'license', name: 'license' },
 { data: 'city', name: 'city' },
 { data: 'state', name: 'state' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }

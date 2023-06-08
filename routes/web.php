@@ -168,6 +168,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('sms-template-defaults/destroy', 'SmsTemplateDefaultController@massDestroy')->name('sms-template-defaults.massDestroy');
     Route::resource('sms-template-defaults', 'SmsTemplateDefaultController');
 
+    // Contact
+    Route::delete('contacts/destroy', 'ContactController@massDestroy')->name('contacts.massDestroy');
+    Route::resource('contacts', 'ContactController');
+
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
