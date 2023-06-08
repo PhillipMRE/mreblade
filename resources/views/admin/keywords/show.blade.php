@@ -137,6 +137,14 @@
                             <input type="checkbox" disabled="disabled" {{ $keyword->listhub ? 'checked' : '' }}>
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.keyword.fields.lending_officer') }}
+                        </th>
+                        <td>
+                            {{ $keyword->lending_officer->display_name ?? '' }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

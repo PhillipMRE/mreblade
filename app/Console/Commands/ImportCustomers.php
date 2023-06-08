@@ -18,17 +18,16 @@ class ImportCustomers extends Command
 
     public function handle()
     {
-        // Retrieve data from the old LbCustomer table
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         $oldCustomers = DB::connection('mysql-old')->table('LbCustomer')->get();
 
         $totalCustomers = count($oldCustomers);
         $processedCustomers = 0;
 
-        // Start the progress bar
         $progressBar = $this->output->createProgressBar($totalCustomers);
         $progressBar->start();
 
-        // Import each customer to the new customers table
         foreach ($oldCustomers as $oldCustomer) {
             DB::table('customers')->updateOrInsert(
                 ['name' => $oldCustomer->name],
@@ -61,15 +60,15 @@ class ImportCustomers extends Command
                 ]
             );
 
-            // Update the progress bar and increment the processed customers count
             $progressBar->advance();
             $processedCustomers++;
         }
 
-        // Finish the progress bar
         $progressBar->finish();
 
-        // Output the summary
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
         $this->info("\nCustomers imported successfully. Total customers: $totalCustomers");
+
     }
 }

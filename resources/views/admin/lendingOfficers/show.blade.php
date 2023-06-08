@@ -244,22 +244,6 @@
     </div>
 </div>
 
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.relatedData') }}
-    </div>
-    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
-        <li class="nav-item">
-            <a class="nav-link" href="#lending_officer_customers" role="tab" data-toggle="tab">
-                {{ trans('cruds.customer.title') }}
-            </a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="lending_officer_customers">
-            @includeIf('admin.lendingOfficers.relationships.lendingOfficerCustomers', ['customers' => $lendingOfficer->lendingOfficerCustomers])
-        </div>
-    </div>
-</div>
+
 
 @endsection

@@ -174,6 +174,20 @@
                 <span class="help-block">{{ trans('cruds.keyword.fields.listhub_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="lending_officer_id">{{ trans('cruds.keyword.fields.lending_officer') }}</label>
+                <select class="form-control select2 {{ $errors->has('lending_officer') ? 'is-invalid' : '' }}" name="lending_officer_id" id="lending_officer_id">
+                    @foreach($lending_officers as $id => $entry)
+                        <option value="{{ $id }}" {{ old('lending_officer_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('lending_officer'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('lending_officer') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.keyword.fields.lending_officer_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

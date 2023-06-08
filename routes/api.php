@@ -95,4 +95,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Sms Template Default
     Route::apiResource('sms-template-defaults', 'SmsTemplateDefaultApiController');
+
+    // Contact
+    Route::apiResource('contacts', 'ContactApiController');
 });

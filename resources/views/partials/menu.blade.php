@@ -242,6 +242,16 @@
                 </ul>
             </li>
         @endcan
+        @can('contact_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.contacts.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/contacts") || request()->is("admin/contacts/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-address-card c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.contact.title') }}
+                </a>
+            </li>
+        @endcan
         @can('user_management_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/permissions*") ? "c-show" : "" }} {{ request()->is("admin/roles*") ? "c-show" : "" }} {{ request()->is("admin/users*") ? "c-show" : "" }} {{ request()->is("admin/audit-logs*") ? "c-show" : "" }} {{ request()->is("admin/user-alerts*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">

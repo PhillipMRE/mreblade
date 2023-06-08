@@ -36,18 +36,22 @@
                 <span class="help-block">{{ trans('cruds.customer.fields.published_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="lending_officer_id">{{ trans('cruds.customer.fields.lending_officer') }}</label>
-                <select class="form-control select2 {{ $errors->has('lending_officer') ? 'is-invalid' : '' }}" name="lending_officer_id" id="lending_officer_id">
-                    @foreach($lending_officers as $id => $entry)
-                        <option value="{{ $id }}" {{ old('lending_officer_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                <label for="clients">{{ trans('cruds.customer.fields.clients') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('clients') ? 'is-invalid' : '' }}" name="clients[]" id="clients" multiple>
+                    @foreach($clients as $id => $client)
+                        <option value="{{ $id }}" {{ in_array($id, old('clients', [])) ? 'selected' : '' }}>{{ $client }}</option>
                     @endforeach
                 </select>
-                @if($errors->has('lending_officer'))
+                @if($errors->has('clients'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('lending_officer') }}
+                        {{ $errors->first('clients') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.customer.fields.lending_officer_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.customer.fields.clients_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="name">{{ trans('cruds.customer.fields.name') }}</label>
@@ -160,16 +164,6 @@
                 <span class="help-block">{{ trans('cruds.customer.fields.zip_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="website">{{ trans('cruds.customer.fields.website') }}</label>
-                <input class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}" type="text" name="website" id="website" value="{{ old('website', '') }}">
-                @if($errors->has('website'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('website') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.customer.fields.website_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label for="template">{{ trans('cruds.customer.fields.template') }}</label>
                 <textarea class="form-control {{ $errors->has('template') ? 'is-invalid' : '' }}" name="template" id="template">{{ old('template') }}</textarea>
                 @if($errors->has('template'))
@@ -188,16 +182,6 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.customer.fields.level_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="settings">{{ trans('cruds.customer.fields.settings') }}</label>
-                <input class="form-control {{ $errors->has('settings') ? 'is-invalid' : '' }}" type="text" name="settings" id="settings" value="{{ old('settings', '') }}">
-                @if($errors->has('settings'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('settings') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.customer.fields.settings_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="disclosure">{{ trans('cruds.customer.fields.disclosure') }}</label>
@@ -264,6 +248,36 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.customer.fields.ep_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="fusebill">{{ trans('cruds.customer.fields.fusebill') }}</label>
+                <input class="form-control {{ $errors->has('fusebill') ? 'is-invalid' : '' }}" type="text" name="fusebill" id="fusebill" value="{{ old('fusebill', '') }}">
+                @if($errors->has('fusebill'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('fusebill') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.customer.fields.fusebill_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="settings">{{ trans('cruds.customer.fields.settings') }}</label>
+                <textarea class="form-control {{ $errors->has('settings') ? 'is-invalid' : '' }}" name="settings" id="settings">{{ old('settings') }}</textarea>
+                @if($errors->has('settings'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('settings') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.customer.fields.settings_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="website">{{ trans('cruds.customer.fields.website') }}</label>
+                <textarea class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}" name="website" id="website">{{ old('website') }}</textarea>
+                @if($errors->has('website'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('website') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.customer.fields.website_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
