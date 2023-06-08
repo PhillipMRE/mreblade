@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Keyword extends Model
 {
-    use SoftDeletes, Auditable, HasFactory;
+    use SoftDeletes,  HasFactory;
 
     public $table = 'keywords';
 
