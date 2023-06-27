@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateNoteRequest;
 use App\Http\Resources\Admin\NoteResource;
 use App\Models\Note;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class NoteApiController extends Controller

@@ -33,9 +33,9 @@ class UsersController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'user_show';
-                $editGate      = 'user_edit';
-                $deleteGate    = 'user_delete';
+                $viewGate = 'user_show';
+                $editGate = 'user_edit';
+                $deleteGate = 'user_delete';
                 $crudRoutePart = 'users';
 
                 return view('partials.datatablesActions', compact(
@@ -65,7 +65,7 @@ class UsersController extends Controller
                 return $row->name ? $row->name : '';
             });
             $table->editColumn('verified', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->verified ? 'checked' : null) . '>';
+                return '<input type="checkbox" disabled '.($row->verified ? 'checked' : null).'>';
             });
             $table->editColumn('email', function ($row) {
                 return $row->email ? $row->email : '';
@@ -104,7 +104,7 @@ class UsersController extends Controller
         $user->phone_numbers()->sync($request->input('phone_numbers', []));
         $user->roles()->sync($request->input('roles', []));
         if ($request->input('avatar', false)) {
-            $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('avatar'))))->toMediaCollection('avatar');
+            $user->addMedia(storage_path('tmp/uploads/'.basename($request->input('avatar'))))->toMediaCollection('avatar');
         }
 
         if ($media = $request->input('ck-media', false)) {
@@ -137,7 +137,7 @@ class UsersController extends Controller
                 if ($user->avatar) {
                     $user->avatar->delete();
                 }
-                $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('avatar'))))->toMediaCollection('avatar');
+                $user->addMedia(storage_path('tmp/uploads/'.basename($request->input('avatar'))))->toMediaCollection('avatar');
             }
         } elseif ($user->avatar) {
             $user->avatar->delete();
@@ -179,10 +179,10 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_create') && Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new User();
-        $model->id     = $request->input('crud_id', 0);
+        $model = new User();
+        $model->id = $request->input('crud_id', 0);
         $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }

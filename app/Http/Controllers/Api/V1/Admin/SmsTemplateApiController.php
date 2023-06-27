@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateSmsTemplateRequest;
 use App\Http\Resources\Admin\SmsTemplateResource;
 use App\Models\SmsTemplate;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class SmsTemplateApiController extends Controller

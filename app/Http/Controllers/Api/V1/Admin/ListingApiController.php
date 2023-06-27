@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateListingRequest;
 use App\Http\Resources\Admin\ListingResource;
 use App\Models\Listing;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ListingApiController extends Controller

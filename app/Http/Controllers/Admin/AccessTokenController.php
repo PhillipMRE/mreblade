@@ -27,9 +27,9 @@ class AccessTokenController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'access_token_show';
-                $editGate      = 'access_token_edit';
-                $deleteGate    = 'access_token_delete';
+                $viewGate = 'access_token_show';
+                $editGate = 'access_token_edit';
+                $deleteGate = 'access_token_delete';
                 $crudRoutePart = 'access-tokens';
 
                 return view('partials.datatablesActions', compact(

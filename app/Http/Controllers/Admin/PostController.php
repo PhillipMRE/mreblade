@@ -32,9 +32,9 @@ class PostController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'post_show';
-                $editGate      = 'post_edit';
-                $deleteGate    = 'post_delete';
+                $viewGate = 'post_show';
+                $editGate = 'post_edit';
+                $deleteGate = 'post_delete';
                 $crudRoutePart = 'posts';
 
                 return view('partials.datatablesActions', compact(
@@ -68,10 +68,10 @@ class PostController extends Controller
             });
 
             $table->editColumn('published', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
+                return '<input type="checkbox" disabled '.($row->published ? 'checked' : null).'>';
             });
             $table->editColumn('sticky', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->sticky ? 'checked' : null) . '>';
+                return '<input type="checkbox" disabled '.($row->sticky ? 'checked' : null).'>';
             });
 
             $table->rawColumns(['actions', 'placeholder', 'featured_image', 'author', 'published', 'sticky']);
@@ -96,7 +96,7 @@ class PostController extends Controller
         $post = Post::create($request->all());
 
         if ($request->input('featured_image', false)) {
-            $post->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
+            $post->addMedia(storage_path('tmp/uploads/'.basename($request->input('featured_image'))))->toMediaCollection('featured_image');
         }
 
         if ($media = $request->input('ck-media', false)) {
@@ -126,7 +126,7 @@ class PostController extends Controller
                 if ($post->featured_image) {
                     $post->featured_image->delete();
                 }
-                $post->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
+                $post->addMedia(storage_path('tmp/uploads/'.basename($request->input('featured_image'))))->toMediaCollection('featured_image');
             }
         } elseif ($post->featured_image) {
             $post->featured_image->delete();
@@ -168,10 +168,10 @@ class PostController extends Controller
     {
         abort_if(Gate::denies('post_create') && Gate::denies('post_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new Post();
-        $model->id     = $request->input('crud_id', 0);
+        $model = new Post();
+        $model->id = $request->input('crud_id', 0);
         $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }

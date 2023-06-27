@@ -32,9 +32,9 @@ class LendingOfficerController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'lending_officer_show';
-                $editGate      = 'lending_officer_edit';
-                $deleteGate    = 'lending_officer_delete';
+                $viewGate = 'lending_officer_show';
+                $editGate = 'lending_officer_edit';
+                $deleteGate = 'lending_officer_delete';
                 $crudRoutePart = 'lending-officers';
 
                 return view('partials.datatablesActions', compact(
@@ -50,7 +50,7 @@ class LendingOfficerController extends Controller
                 return $row->id ? $row->id : '';
             });
             $table->editColumn('published', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
+                return '<input type="checkbox" disabled '.($row->published ? 'checked' : null).'>';
             });
             $table->editColumn('display_name', function ($row) {
                 return $row->display_name ? $row->display_name : '';
@@ -147,10 +147,10 @@ class LendingOfficerController extends Controller
     {
         abort_if(Gate::denies('lending_officer_create') && Gate::denies('lending_officer_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new LendingOfficer();
-        $model->id     = $request->input('crud_id', 0);
+        $model = new LendingOfficer();
+        $model->id = $request->input('crud_id', 0);
         $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }

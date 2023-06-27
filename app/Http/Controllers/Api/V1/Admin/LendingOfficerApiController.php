@@ -9,7 +9,6 @@ use App\Http\Requests\UpdateLendingOfficerRequest;
 use App\Http\Resources\Admin\LendingOfficerResource;
 use App\Models\LendingOfficer;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class LendingOfficerApiController extends Controller

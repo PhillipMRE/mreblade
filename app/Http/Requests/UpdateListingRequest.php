@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Listing;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Response;
 
 class UpdateListingRequest extends FormRequest
 {
@@ -74,11 +72,11 @@ class UpdateListingRequest extends FormRequest
                 'nullable',
             ],
             'open_house_date' => [
-                'date_format:' . config('panel.date_format'),
+                'date_format:'.config('panel.date_format'),
                 'nullable',
             ],
             'open_house_time' => [
-                'date_format:' . config('panel.time_format'),
+                'date_format:'.config('panel.time_format'),
                 'nullable',
             ],
             'latitude' => [
@@ -154,7 +152,7 @@ class UpdateListingRequest extends FormRequest
                 'nullable',
             ],
             'ts' => [
-                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
+                'date_format:'.config('panel.date_format').' '.config('panel.time_format'),
                 'nullable',
             ],
             'add_status' => [
@@ -162,14 +160,14 @@ class UpdateListingRequest extends FormRequest
                 'nullable',
             ],
             'selling_date' => [
-                'date_format:' . config('panel.date_format'),
+                'date_format:'.config('panel.date_format'),
                 'nullable',
             ],
             'prev_price' => [
                 'numeric',
             ],
             'price_change_date' => [
-                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
+                'date_format:'.config('panel.date_format').' '.config('panel.time_format'),
                 'nullable',
             ],
             'class_name' => [

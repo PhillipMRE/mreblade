@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateContactRequest;
 use App\Http\Resources\Admin\ContactResource;
 use App\Models\Contact;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ContactApiController extends Controller

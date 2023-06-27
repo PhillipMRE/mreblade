@@ -9,7 +9,6 @@ use App\Http\Requests\UpdateSponsorRequest;
 use App\Http\Resources\Admin\SponsorResource;
 use App\Models\Sponsor;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class SponsorApiController extends Controller

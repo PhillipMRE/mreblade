@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateCarrierRequest;
 use App\Http\Resources\Admin\CarrierResource;
 use App\Models\Carrier;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CarrierApiController extends Controller

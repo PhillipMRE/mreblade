@@ -27,9 +27,9 @@ class ChartController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'chart_show';
-                $editGate      = 'chart_edit';
-                $deleteGate    = 'chart_delete';
+                $viewGate = 'chart_show';
+                $editGate = 'chart_edit';
+                $deleteGate = 'chart_delete';
                 $crudRoutePart = 'charts';
 
                 return view('partials.datatablesActions', compact(

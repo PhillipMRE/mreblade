@@ -30,9 +30,9 @@ class StateController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'state_show';
-                $editGate      = 'state_edit';
-                $deleteGate    = 'state_delete';
+                $viewGate = 'state_show';
+                $editGate = 'state_edit';
+                $deleteGate = 'state_delete';
                 $crudRoutePart = 'states';
 
                 return view('partials.datatablesActions', compact(

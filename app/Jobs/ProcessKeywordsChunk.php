@@ -8,7 +8,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
-use App\Models\Keyword; 
 
 class ProcessKeywordsChunk implements ShouldQueue
 {
@@ -45,7 +44,7 @@ class ProcessKeywordsChunk implements ShouldQueue
             ];
         }
 
-        if (!empty($keywordData)) {
+        if (! empty($keywordData)) {
             DB::table('keywords')->upsert($keywordData, ['name'], [
                 'template',
                 'map',
@@ -65,4 +64,3 @@ class ProcessKeywordsChunk implements ShouldQueue
         }
     }
 }
-

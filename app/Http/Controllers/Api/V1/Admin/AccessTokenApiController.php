@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateAccessTokenRequest;
 use App\Http\Resources\Admin\AccessTokenResource;
 use App\Models\AccessToken;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class AccessTokenApiController extends Controller

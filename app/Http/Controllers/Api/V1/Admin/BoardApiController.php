@@ -9,7 +9,6 @@ use App\Http\Requests\UpdateBoardRequest;
 use App\Http\Resources\Admin\BoardResource;
 use App\Models\Board;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class BoardApiController extends Controller

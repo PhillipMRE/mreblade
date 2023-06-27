@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateEmailHistoryRequest;
 use App\Http\Resources\Admin\EmailHistoryResource;
 use App\Models\EmailHistory;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class EmailHistoryApiController extends Controller

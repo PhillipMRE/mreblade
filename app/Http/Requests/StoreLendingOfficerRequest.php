@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Models\LendingOfficer;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Response;
 
 class StoreLendingOfficerRequest extends FormRequest
 {
@@ -78,7 +76,7 @@ class StoreLendingOfficerRequest extends FormRequest
                 'nullable',
             ],
             'welcome_sent' => [
-                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
+                'date_format:'.config('panel.date_format').' '.config('panel.time_format'),
                 'nullable',
             ],
             'phone_numbers.*' => [

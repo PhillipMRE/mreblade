@@ -9,7 +9,6 @@ use App\Http\Requests\UpdateAgentRequest;
 use App\Http\Resources\Admin\AgentResource;
 use App\Models\Agent;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class AgentsApiController extends Controller

@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateKeywordAppRequest;
 use App\Http\Resources\Admin\KeywordAppResource;
 use App\Models\KeywordApp;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class KeywordAppApiController extends Controller

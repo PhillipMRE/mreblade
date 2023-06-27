@@ -27,9 +27,9 @@ class QuoteController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'quote_show';
-                $editGate      = 'quote_edit';
-                $deleteGate    = 'quote_delete';
+                $viewGate = 'quote_show';
+                $editGate = 'quote_edit';
+                $deleteGate = 'quote_delete';
                 $crudRoutePart = 'quotes';
 
                 return view('partials.datatablesActions', compact(

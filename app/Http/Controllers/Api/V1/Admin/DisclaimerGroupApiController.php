@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateDisclaimerGroupRequest;
 use App\Http\Resources\Admin\DisclaimerGroupResource;
 use App\Models\DisclaimerGroup;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DisclaimerGroupApiController extends Controller

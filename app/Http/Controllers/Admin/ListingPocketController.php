@@ -26,9 +26,9 @@ class ListingPocketController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'listing_pocket_show';
-                $editGate      = 'listing_pocket_edit';
-                $deleteGate    = 'listing_pocket_delete';
+                $viewGate = 'listing_pocket_show';
+                $editGate = 'listing_pocket_edit';
+                $deleteGate = 'listing_pocket_delete';
                 $crudRoutePart = 'listing-pockets';
 
                 return view('partials.datatablesActions', compact(

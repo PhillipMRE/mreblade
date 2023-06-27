@@ -10,7 +10,7 @@ class KeywordActionObserver
 {
     public function created(Keyword $model)
     {
-        $data  = ['action' => 'created', 'model_name' => 'Keyword'];
+        $data = ['action' => 'created', 'model_name' => 'Keyword'];
         $users = \App\Models\User::whereHas('roles', function ($q) {
             return $q->where('title', 'Admin');
         })->get();
@@ -19,7 +19,7 @@ class KeywordActionObserver
 
     public function updated(Keyword $model)
     {
-        $data  = ['action' => 'updated', 'model_name' => 'Keyword'];
+        $data = ['action' => 'updated', 'model_name' => 'Keyword'];
         $users = \App\Models\User::whereHas('roles', function ($q) {
             return $q->where('title', 'Admin');
         })->get();
@@ -28,7 +28,7 @@ class KeywordActionObserver
 
     public function deleting(Keyword $model)
     {
-        $data  = ['action' => 'deleted', 'model_name' => 'Keyword'];
+        $data = ['action' => 'deleted', 'model_name' => 'Keyword'];
         $users = \App\Models\User::whereHas('roles', function ($q) {
             return $q->where('title', 'Admin');
         })->get();

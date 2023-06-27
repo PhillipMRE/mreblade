@@ -27,9 +27,9 @@ class EmailHistoryController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'email_history_show';
-                $editGate      = 'email_history_edit';
-                $deleteGate    = 'email_history_delete';
+                $viewGate = 'email_history_show';
+                $editGate = 'email_history_edit';
+                $deleteGate = 'email_history_delete';
                 $crudRoutePart = 'email-histories';
 
                 return view('partials.datatablesActions', compact(

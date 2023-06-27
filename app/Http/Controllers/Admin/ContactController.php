@@ -28,9 +28,9 @@ class ContactController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'contact_show';
-                $editGate      = 'contact_edit';
-                $deleteGate    = 'contact_delete';
+                $viewGate = 'contact_show';
+                $editGate = 'contact_edit';
+                $deleteGate = 'contact_delete';
                 $crudRoutePart = 'contacts';
 
                 return view('partials.datatablesActions', compact(

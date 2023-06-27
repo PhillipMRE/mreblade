@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateChartRequest;
 use App\Http\Resources\Admin\ChartResource;
 use App\Models\Chart;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ChartApiController extends Controller

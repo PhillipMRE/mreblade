@@ -3,10 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\Keyword;
-use App\Models\Customer;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Console\Command;
 use Carbon\Carbon;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class ImportKeywords extends Command
 {
@@ -15,9 +14,8 @@ class ImportKeywords extends Command
 
     public function handle()
     {
-
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        $chunkSize = 500; 
+        $chunkSize = 500;
         $totalKeywords = DB::connection('mysql-old')->table('LbKeyword')->count();
         $bar = $this->output->createProgressBar($totalKeywords);
         $bar->setFormat("Processing... %current%/%max% %bar% %percent:3s%%\nEstimated Time: %estimated%\nElapsed Time: %elapsed%");
@@ -80,5 +78,4 @@ class ImportKeywords extends Command
 
         return sprintf('%02d:%02d:%02d', $h, $m, $s);
     }
-
 }

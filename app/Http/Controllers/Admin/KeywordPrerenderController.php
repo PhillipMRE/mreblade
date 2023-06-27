@@ -27,9 +27,9 @@ class KeywordPrerenderController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'keyword_prerender_show';
-                $editGate      = 'keyword_prerender_edit';
-                $deleteGate    = 'keyword_prerender_delete';
+                $viewGate = 'keyword_prerender_show';
+                $editGate = 'keyword_prerender_edit';
+                $deleteGate = 'keyword_prerender_delete';
                 $crudRoutePart = 'keyword-prerenders';
 
                 return view('partials.datatablesActions', compact(

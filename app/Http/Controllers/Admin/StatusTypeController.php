@@ -27,9 +27,9 @@ class StatusTypeController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'status_type_show';
-                $editGate      = 'status_type_edit';
-                $deleteGate    = 'status_type_delete';
+                $viewGate = 'status_type_show';
+                $editGate = 'status_type_edit';
+                $deleteGate = 'status_type_delete';
                 $crudRoutePart = 'status-types';
 
                 return view('partials.datatablesActions', compact(
