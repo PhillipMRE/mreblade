@@ -32,9 +32,9 @@ class ClientController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'client_show';
-                $editGate      = 'client_edit';
-                $deleteGate    = 'client_delete';
+                $viewGate = 'client_show';
+                $editGate = 'client_edit';
+                $deleteGate = 'client_delete';
                 $crudRoutePart = 'clients';
 
                 return view('partials.datatablesActions', compact(
@@ -50,10 +50,10 @@ class ClientController extends Controller
                 return $row->id ? $row->id : '';
             });
             $table->editColumn('published', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
+                return '<input type="checkbox" disabled '.($row->published ? 'checked' : null).'>';
             });
             $table->editColumn('claimed', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->claimed ? 'checked' : null) . '>';
+                return '<input type="checkbox" disabled '.($row->claimed ? 'checked' : null).'>';
             });
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
@@ -86,7 +86,7 @@ class ClientController extends Controller
         $client = Client::create($request->all());
         $client->phone_numbers()->sync($request->input('phone_numbers', []));
         if ($request->input('photo', false)) {
-            $client->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+            $client->addMedia(storage_path('tmp/uploads/'.basename($request->input('photo'))))->toMediaCollection('photo');
         }
 
         if ($media = $request->input('ck-media', false)) {
@@ -118,7 +118,7 @@ class ClientController extends Controller
                 if ($client->photo) {
                     $client->photo->delete();
                 }
-                $client->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+                $client->addMedia(storage_path('tmp/uploads/'.basename($request->input('photo'))))->toMediaCollection('photo');
             }
         } elseif ($client->photo) {
             $client->photo->delete();
@@ -160,10 +160,10 @@ class ClientController extends Controller
     {
         abort_if(Gate::denies('client_create') && Gate::denies('client_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new Client();
-        $model->id     = $request->input('crud_id', 0);
+        $model = new Client();
+        $model->id = $request->input('crud_id', 0);
         $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }

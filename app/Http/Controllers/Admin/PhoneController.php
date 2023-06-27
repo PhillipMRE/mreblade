@@ -27,9 +27,9 @@ class PhoneController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'phone_show';
-                $editGate      = 'phone_edit';
-                $deleteGate    = 'phone_delete';
+                $viewGate = 'phone_show';
+                $editGate = 'phone_edit';
+                $deleteGate = 'phone_delete';
                 $crudRoutePart = 'phones';
 
                 return view('partials.datatablesActions', compact(

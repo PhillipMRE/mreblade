@@ -26,9 +26,9 @@ class ListingController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'listing_show';
-                $editGate      = 'listing_edit';
-                $deleteGate    = 'listing_delete';
+                $viewGate = 'listing_show';
+                $editGate = 'listing_edit';
+                $deleteGate = 'listing_delete';
                 $crudRoutePart = 'listings';
 
                 return view('partials.datatablesActions', compact(
@@ -44,7 +44,7 @@ class ListingController extends Controller
                 return $row->id ? $row->id : '';
             });
             $table->editColumn('published', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
+                return '<input type="checkbox" disabled '.($row->published ? 'checked' : null).'>';
             });
             $table->editColumn('full_address', function ($row) {
                 return $row->full_address ? $row->full_address : '';

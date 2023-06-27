@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateKeywordPrerenderRequest;
 use App\Http\Resources\Admin\KeywordPrerenderResource;
 use App\Models\KeywordPrerender;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class KeywordPrerenderApiController extends Controller

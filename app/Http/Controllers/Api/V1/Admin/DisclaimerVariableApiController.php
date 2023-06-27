@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateDisclaimerVariableRequest;
 use App\Http\Resources\Admin\DisclaimerVariableResource;
 use App\Models\DisclaimerVariable;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DisclaimerVariableApiController extends Controller

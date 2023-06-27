@@ -9,7 +9,6 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\Admin\PostResource;
 use App\Models\Post;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class PostApiController extends Controller
@@ -28,7 +27,7 @@ class PostApiController extends Controller
         $post = Post::create($request->all());
 
         if ($request->input('featured_image', false)) {
-            $post->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
+            $post->addMedia(storage_path('tmp/uploads/'.basename($request->input('featured_image'))))->toMediaCollection('featured_image');
         }
 
         return (new PostResource($post))
@@ -52,7 +51,7 @@ class PostApiController extends Controller
                 if ($post->featured_image) {
                     $post->featured_image->delete();
                 }
-                $post->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
+                $post->addMedia(storage_path('tmp/uploads/'.basename($request->input('featured_image'))))->toMediaCollection('featured_image');
             }
         } elseif ($post->featured_image) {
             $post->featured_image->delete();

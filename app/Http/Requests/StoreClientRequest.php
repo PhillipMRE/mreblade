@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Client;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Response;
 
 class StoreClientRequest extends FormRequest
 {
@@ -38,7 +36,7 @@ class StoreClientRequest extends FormRequest
                 'nullable',
             ],
             'muted_at' => [
-                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
+                'date_format:'.config('panel.date_format').' '.config('panel.time_format'),
                 'nullable',
             ],
             'source' => [

@@ -8,7 +8,6 @@ use App\Http\Requests\UpdatePhoneRequest;
 use App\Http\Resources\Admin\PhoneResource;
 use App\Models\Phone;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class PhoneApiController extends Controller

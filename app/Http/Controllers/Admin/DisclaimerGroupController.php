@@ -26,9 +26,9 @@ class DisclaimerGroupController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'disclaimer_group_show';
-                $editGate      = 'disclaimer_group_edit';
-                $deleteGate    = 'disclaimer_group_delete';
+                $viewGate = 'disclaimer_group_show';
+                $editGate = 'disclaimer_group_edit';
+                $deleteGate = 'disclaimer_group_delete';
                 $crudRoutePart = 'disclaimer-groups';
 
                 return view('partials.datatablesActions', compact(

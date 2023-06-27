@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateStatusTypeRequest;
 use App\Http\Resources\Admin\StatusTypeResource;
 use App\Models\StatusType;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class StatusTypeApiController extends Controller

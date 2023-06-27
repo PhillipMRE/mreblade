@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Carbon\Carbon;
 use Closure;
-use Illuminate\Http\Request;
 
 class TwoFactorMiddleware
 {
@@ -13,7 +12,7 @@ class TwoFactorMiddleware
         $user = auth()->user();
 
         if ($user && $user->two_factor_code) {
-            if (Carbon::createFromFormat(config('panel.date_format') . ' ' . config('panel.time_format'), $user->two_factor_expires_at)->lt(now())) {
+            if (Carbon::createFromFormat(config('panel.date_format').' '.config('panel.time_format'), $user->two_factor_expires_at)->lt(now())) {
                 $user->resetTwoFactorCode();
                 auth()->logout();
 

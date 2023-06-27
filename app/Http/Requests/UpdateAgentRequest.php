@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Agent;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Response;
 
 class UpdateAgentRequest extends FormRequest
 {
@@ -62,7 +60,7 @@ class UpdateAgentRequest extends FormRequest
                 'nullable',
             ],
             'vetting_data' => [
-                'date_format:' . config('panel.date_format'),
+                'date_format:'.config('panel.date_format'),
                 'nullable',
             ],
             'phones.*' => [

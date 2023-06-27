@@ -28,9 +28,9 @@ class NoteController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'note_show';
-                $editGate      = 'note_edit';
-                $deleteGate    = 'note_delete';
+                $viewGate = 'note_show';
+                $editGate = 'note_edit';
+                $deleteGate = 'note_delete';
                 $crudRoutePart = 'notes';
 
                 return view('partials.datatablesActions', compact(

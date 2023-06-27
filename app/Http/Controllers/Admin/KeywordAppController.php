@@ -26,9 +26,9 @@ class KeywordAppController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'keyword_app_show';
-                $editGate      = 'keyword_app_edit';
-                $deleteGate    = 'keyword_app_delete';
+                $viewGate = 'keyword_app_show';
+                $editGate = 'keyword_app_edit';
+                $deleteGate = 'keyword_app_delete';
                 $crudRoutePart = 'keyword-apps';
 
                 return view('partials.datatablesActions', compact(

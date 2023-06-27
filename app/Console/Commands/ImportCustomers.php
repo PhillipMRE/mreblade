@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use DB;
+use Illuminate\Console\Command;
 
 class ImportCustomers extends Command
 {
@@ -69,6 +69,5 @@ class ImportCustomers extends Command
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $this->info("\nCustomers imported successfully. Total customers: $totalCustomers");
-
     }
 }

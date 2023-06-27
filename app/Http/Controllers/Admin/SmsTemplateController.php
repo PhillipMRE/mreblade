@@ -28,9 +28,9 @@ class SmsTemplateController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'sms_template_show';
-                $editGate      = 'sms_template_edit';
-                $deleteGate    = 'sms_template_delete';
+                $viewGate = 'sms_template_show';
+                $editGate = 'sms_template_edit';
+                $deleteGate = 'sms_template_delete';
                 $crudRoutePart = 'sms-templates';
 
                 return view('partials.datatablesActions', compact(

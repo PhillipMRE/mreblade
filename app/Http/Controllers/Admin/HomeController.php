@@ -32,11 +32,11 @@ class HomeController
                 } elseif (isset($settings1['filter_period'])) {
                     switch ($settings1['filter_period']) {
                         case 'week': $start = date('Y-m-d', strtotime('last Monday'));
-                        break;
-                        case 'month': $start = date('Y-m') . '-01';
-                        break;
-                        case 'year': $start = date('Y') . '-01-01';
-                        break;
+                            break;
+                        case 'month': $start = date('Y-m').'-01';
+                            break;
+                        case 'year': $start = date('Y').'-01-01';
+                            break;
                     }
                     if (isset($start)) {
                         return $query->where($settings1['filter_field'], '>=', $start);
@@ -70,11 +70,11 @@ class HomeController
                 } elseif (isset($settings2['filter_period'])) {
                     switch ($settings2['filter_period']) {
                         case 'week': $start = date('Y-m-d', strtotime('last Monday'));
-                        break;
-                        case 'month': $start = date('Y-m') . '-01';
-                        break;
-                        case 'year': $start = date('Y') . '-01-01';
-                        break;
+                            break;
+                        case 'month': $start = date('Y-m').'-01';
+                            break;
+                        case 'year': $start = date('Y').'-01-01';
+                            break;
                     }
                     if (isset($start)) {
                         return $query->where($settings2['filter_field'], '>=', $start);
@@ -108,11 +108,11 @@ class HomeController
                 } elseif (isset($settings3['filter_period'])) {
                     switch ($settings3['filter_period']) {
                         case 'week': $start = date('Y-m-d', strtotime('last Monday'));
-                        break;
-                        case 'month': $start = date('Y-m') . '-01';
-                        break;
-                        case 'year': $start = date('Y') . '-01-01';
-                        break;
+                            break;
+                        case 'month': $start = date('Y-m').'-01';
+                            break;
+                        case 'year': $start = date('Y').'-01-01';
+                            break;
                     }
                     if (isset($start)) {
                         return $query->where($settings3['filter_field'], '>=', $start);
@@ -146,11 +146,11 @@ class HomeController
                 } elseif (isset($settings4['filter_period'])) {
                     switch ($settings4['filter_period']) {
                         case 'week': $start = date('Y-m-d', strtotime('last Monday'));
-                        break;
-                        case 'month': $start = date('Y-m') . '-01';
-                        break;
-                        case 'year': $start = date('Y') . '-01-01';
-                        break;
+                            break;
+                        case 'month': $start = date('Y-m').'-01';
+                            break;
+                        case 'year': $start = date('Y').'-01-01';
+                            break;
                     }
                     if (isset($start)) {
                         return $query->where($settings4['filter_field'], '>=', $start);
@@ -184,11 +184,11 @@ class HomeController
                 } elseif (isset($settings5['filter_period'])) {
                     switch ($settings5['filter_period']) {
                         case 'week': $start = date('Y-m-d', strtotime('last Monday'));
-                        break;
-                        case 'month': $start = date('Y-m') . '-01';
-                        break;
-                        case 'year': $start = date('Y') . '-01-01';
-                        break;
+                            break;
+                        case 'month': $start = date('Y-m').'-01';
+                            break;
+                        case 'year': $start = date('Y').'-01-01';
+                            break;
                     }
                     if (isset($start)) {
                         return $query->where($settings5['filter_field'], '>=', $start);
@@ -222,11 +222,11 @@ class HomeController
                 } elseif (isset($settings6['filter_period'])) {
                     switch ($settings6['filter_period']) {
                         case 'week': $start = date('Y-m-d', strtotime('last Monday'));
-                        break;
-                        case 'month': $start = date('Y-m') . '-01';
-                        break;
-                        case 'year': $start = date('Y') . '-01-01';
-                        break;
+                            break;
+                        case 'month': $start = date('Y-m').'-01';
+                            break;
+                        case 'year': $start = date('Y').'-01-01';
+                            break;
                     }
                     if (isset($start)) {
                         return $query->where($settings6['filter_field'], '>=', $start);
@@ -260,11 +260,11 @@ class HomeController
                 } elseif (isset($settings7['filter_period'])) {
                     switch ($settings7['filter_period']) {
                         case 'week': $start = date('Y-m-d', strtotime('last Monday'));
-                        break;
-                        case 'month': $start = date('Y-m') . '-01';
-                        break;
-                        case 'year': $start = date('Y') . '-01-01';
-                        break;
+                            break;
+                        case 'month': $start = date('Y-m').'-01';
+                            break;
+                        case 'year': $start = date('Y').'-01-01';
+                            break;
                     }
                     if (isset($start)) {
                         return $query->where($settings7['filter_field'], '>=', $start);

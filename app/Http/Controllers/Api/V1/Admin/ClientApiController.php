@@ -9,7 +9,6 @@ use App\Http\Requests\UpdateClientRequest;
 use App\Http\Resources\Admin\ClientResource;
 use App\Models\Client;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ClientApiController extends Controller
@@ -28,7 +27,7 @@ class ClientApiController extends Controller
         $client = Client::create($request->all());
         $client->phone_numbers()->sync($request->input('phone_numbers', []));
         if ($request->input('photo', false)) {
-            $client->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+            $client->addMedia(storage_path('tmp/uploads/'.basename($request->input('photo'))))->toMediaCollection('photo');
         }
 
         return (new ClientResource($client))
@@ -52,7 +51,7 @@ class ClientApiController extends Controller
                 if ($client->photo) {
                     $client->photo->delete();
                 }
-                $client->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+                $client->addMedia(storage_path('tmp/uploads/'.basename($request->input('photo'))))->toMediaCollection('photo');
             }
         } elseif ($client->photo) {
             $client->photo->delete();

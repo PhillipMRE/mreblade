@@ -28,9 +28,9 @@ class KeywordController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'keyword_show';
-                $editGate      = 'keyword_edit';
-                $deleteGate    = 'keyword_delete';
+                $viewGate = 'keyword_show';
+                $editGate = 'keyword_edit';
+                $deleteGate = 'keyword_delete';
                 $crudRoutePart = 'keywords';
 
                 return view('partials.datatablesActions', compact(
@@ -49,7 +49,7 @@ class KeywordController extends Controller
                 return $row->name ? $row->name : '';
             });
             $table->editColumn('active', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->active ? 'checked' : null) . '>';
+                return '<input type="checkbox" disabled '.($row->active ? 'checked' : null).'>';
             });
 
             $table->rawColumns(['actions', 'placeholder', 'active']);

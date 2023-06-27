@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Console\Command;
-use Carbon\Carbon;
 use App\Jobs\ProcessKeywordsChunk;
+use Carbon\Carbon;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class ProcessKeywordsCommand extends Command
 {
@@ -38,5 +38,4 @@ class ProcessKeywordsCommand extends Command
         $this->info("\nKeywords import completed!");
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
-
 }

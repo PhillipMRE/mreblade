@@ -26,9 +26,9 @@ class DisclaimerVariableController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'disclaimer_variable_show';
-                $editGate      = 'disclaimer_variable_edit';
-                $deleteGate    = 'disclaimer_variable_delete';
+                $viewGate = 'disclaimer_variable_show';
+                $editGate = 'disclaimer_variable_edit';
+                $deleteGate = 'disclaimer_variable_delete';
                 $crudRoutePart = 'disclaimer-variables';
 
                 return view('partials.datatablesActions', compact(

@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateListingPocketRequest;
 use App\Http\Resources\Admin\ListingPocketResource;
 use App\Models\ListingPocket;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ListingPocketApiController extends Controller

@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateStateResidentRequest;
 use App\Http\Resources\Admin\StateResidentResource;
 use App\Models\StateResident;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class StateResidentApiController extends Controller

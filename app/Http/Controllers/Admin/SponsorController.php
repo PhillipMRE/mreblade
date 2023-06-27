@@ -36,9 +36,9 @@ class SponsorController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'sponsor_show';
-                $editGate      = 'sponsor_edit';
-                $deleteGate    = 'sponsor_delete';
+                $viewGate = 'sponsor_show';
+                $editGate = 'sponsor_edit';
+                $deleteGate = 'sponsor_delete';
                 $crudRoutePart = 'sponsors';
 
                 return view('partials.datatablesActions', compact(
@@ -54,7 +54,7 @@ class SponsorController extends Controller
                 return $row->id ? $row->id : '';
             });
             $table->editColumn('published', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
+                return '<input type="checkbox" disabled '.($row->published ? 'checked' : null).'>';
             });
             $table->editColumn('display_name', function ($row) {
                 return $row->display_name ? $row->display_name : '';
@@ -160,10 +160,10 @@ class SponsorController extends Controller
     {
         abort_if(Gate::denies('sponsor_create') && Gate::denies('sponsor_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new Sponsor();
-        $model->id     = $request->input('crud_id', 0);
+        $model = new Sponsor();
+        $model->id = $request->input('crud_id', 0);
         $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }

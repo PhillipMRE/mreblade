@@ -9,7 +9,6 @@ use App\Http\Requests\UpdateDisclaimerTypeRequest;
 use App\Http\Resources\Admin\DisclaimerTypeResource;
 use App\Models\DisclaimerType;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DisclaimerTypeApiController extends Controller

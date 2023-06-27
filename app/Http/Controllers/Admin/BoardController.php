@@ -30,9 +30,9 @@ class BoardController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'board_show';
-                $editGate      = 'board_edit';
-                $deleteGate    = 'board_delete';
+                $viewGate = 'board_show';
+                $editGate = 'board_edit';
+                $deleteGate = 'board_delete';
                 $crudRoutePart = 'boards';
 
                 return view('partials.datatablesActions', compact(
@@ -48,7 +48,7 @@ class BoardController extends Controller
                 return $row->id ? $row->id : '';
             });
             $table->editColumn('published', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
+                return '<input type="checkbox" disabled '.($row->published ? 'checked' : null).'>';
             });
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
@@ -130,10 +130,10 @@ class BoardController extends Controller
     {
         abort_if(Gate::denies('board_create') && Gate::denies('board_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new Board();
-        $model->id     = $request->input('crud_id', 0);
+        $model = new Board();
+        $model->id = $request->input('crud_id', 0);
         $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }

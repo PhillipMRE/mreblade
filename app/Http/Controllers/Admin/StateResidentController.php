@@ -27,9 +27,9 @@ class StateResidentController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'state_resident_show';
-                $editGate      = 'state_resident_edit';
-                $deleteGate    = 'state_resident_delete';
+                $viewGate = 'state_resident_show';
+                $editGate = 'state_resident_edit';
+                $deleteGate = 'state_resident_delete';
                 $crudRoutePart = 'state-residents';
 
                 return view('partials.datatablesActions', compact(

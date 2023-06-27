@@ -30,9 +30,9 @@ class CustomerController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'customer_show';
-                $editGate      = 'customer_edit';
-                $deleteGate    = 'customer_delete';
+                $viewGate = 'customer_show';
+                $editGate = 'customer_edit';
+                $deleteGate = 'customer_delete';
                 $crudRoutePart = 'customers';
 
                 return view('partials.datatablesActions', compact(
@@ -48,10 +48,10 @@ class CustomerController extends Controller
                 return $row->id ? $row->id : '';
             });
             $table->editColumn('active', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->active ? 'checked' : null) . '>';
+                return '<input type="checkbox" disabled '.($row->active ? 'checked' : null).'>';
             });
             $table->editColumn('published', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
+                return '<input type="checkbox" disabled '.($row->published ? 'checked' : null).'>';
             });
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';

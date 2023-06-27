@@ -30,9 +30,9 @@ class DisclaimerTypeController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'disclaimer_type_show';
-                $editGate      = 'disclaimer_type_edit';
-                $deleteGate    = 'disclaimer_type_delete';
+                $viewGate = 'disclaimer_type_show';
+                $editGate = 'disclaimer_type_edit';
+                $deleteGate = 'disclaimer_type_delete';
                 $crudRoutePart = 'disclaimer-types';
 
                 return view('partials.datatablesActions', compact(
@@ -122,10 +122,10 @@ class DisclaimerTypeController extends Controller
     {
         abort_if(Gate::denies('disclaimer_type_create') && Gate::denies('disclaimer_type_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new DisclaimerType();
-        $model->id     = $request->input('crud_id', 0);
+        $model = new DisclaimerType();
+        $model->id = $request->input('crud_id', 0);
         $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }

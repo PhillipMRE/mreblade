@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Board;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Response;
 
 class UpdateBoardRequest extends FormRequest
 {
@@ -42,7 +40,7 @@ class UpdateBoardRequest extends FormRequest
                 'nullable',
             ],
             'last_sync_at' => [
-                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
+                'date_format:'.config('panel.date_format').' '.config('panel.time_format'),
                 'nullable',
             ],
         ];

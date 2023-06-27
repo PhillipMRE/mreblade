@@ -39,7 +39,7 @@ class ChangePasswordController extends Controller
         $user = auth()->user();
 
         $user->update([
-            'email' => time() . '_' . $user->email,
+            'email' => time().'_'.$user->email,
         ]);
 
         $user->delete();

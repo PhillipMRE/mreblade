@@ -26,9 +26,9 @@ class CarrierController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'carrier_show';
-                $editGate      = 'carrier_edit';
-                $deleteGate    = 'carrier_delete';
+                $viewGate = 'carrier_show';
+                $editGate = 'carrier_edit';
+                $deleteGate = 'carrier_delete';
                 $crudRoutePart = 'carriers';
 
                 return view('partials.datatablesActions', compact(

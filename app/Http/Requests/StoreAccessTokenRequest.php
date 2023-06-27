@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Models\AccessToken;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Response;
 
 class StoreAccessTokenRequest extends FormRequest
 {

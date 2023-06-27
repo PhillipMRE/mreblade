@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateStateRequest;
 use App\Http\Resources\Admin\StateResource;
 use App\Models\State;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class StateApiController extends Controller

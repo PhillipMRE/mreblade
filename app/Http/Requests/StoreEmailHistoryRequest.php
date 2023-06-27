@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Models\EmailHistory;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Response;
 
 class StoreEmailHistoryRequest extends FormRequest
 {
@@ -34,7 +32,7 @@ class StoreEmailHistoryRequest extends FormRequest
                 'nullable',
             ],
             'ts' => [
-                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
+                'date_format:'.config('panel.date_format').' '.config('panel.time_format'),
                 'nullable',
             ],
         ];

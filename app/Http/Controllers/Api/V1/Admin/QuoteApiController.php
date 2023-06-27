@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateQuoteRequest;
 use App\Http\Resources\Admin\QuoteResource;
 use App\Models\Quote;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class QuoteApiController extends Controller

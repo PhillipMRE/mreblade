@@ -9,7 +9,6 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\Admin\UserResource;
 use App\Models\User;
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class UsersApiController extends Controller
@@ -29,7 +28,7 @@ class UsersApiController extends Controller
         $user->phone_numbers()->sync($request->input('phone_numbers', []));
         $user->roles()->sync($request->input('roles', []));
         if ($request->input('avatar', false)) {
-            $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('avatar'))))->toMediaCollection('avatar');
+            $user->addMedia(storage_path('tmp/uploads/'.basename($request->input('avatar'))))->toMediaCollection('avatar');
         }
 
         return (new UserResource($user))
@@ -54,7 +53,7 @@ class UsersApiController extends Controller
                 if ($user->avatar) {
                     $user->avatar->delete();
                 }
-                $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('avatar'))))->toMediaCollection('avatar');
+                $user->addMedia(storage_path('tmp/uploads/'.basename($request->input('avatar'))))->toMediaCollection('avatar');
             }
         } elseif ($user->avatar) {
             $user->avatar->delete();
