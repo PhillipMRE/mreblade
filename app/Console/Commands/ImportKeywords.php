@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 class ImportKeywords extends Command
 {
     protected $signature = 'import:keywords';
@@ -19,8 +22,12 @@ class ImportKeywords extends Command
 
         $chunkSize = 500;
         $totalKeywords = DB::connection('mysql-old')->table('LbKeyword')->count();
+        $newKeywordsCount = 0;
+        $updatedKeywordsCount = 0;
+
         $bar = $this->output->createProgressBar($totalKeywords);
-        $bar->setFormat("Processing... %current%/%max% %bar% %percent:3s%%\nEstimated Time: %estimated%\nElapsed Time: %elapsed%");
+        // $bar->setFormat("Processing... %current%/%max% %bar% %percent:3s%%\nEstimated Time: %estimated%\nElapsed Time: %elapsed%");
+        $bar->setFormat("Processing... %current%/%max% %bar% %percent:3s%%\nEstimated Time: %estimated%\nElapsed Time: %elapsed%\nNew Keywords: %new%\nUpdated Keywords: %updated%");
         $bar->start();
 
         $startTime = Carbon::now();
@@ -28,6 +35,7 @@ class ImportKeywords extends Command
 
         DB::connection('mysql-old')->table('LbKeyword')->orderBy('id')->chunk($chunkSize, function ($oldKeywords) use ($bar, $totalKeywords, $startTime, &$chunksCount, $chunkSize) {
             $chunksCount++;
+
             $keywordData = [];
 
             foreach ($oldKeywords as $oldKeyword) {
@@ -52,10 +60,9 @@ class ImportKeywords extends Command
                 $bar->advance();
             }
 
-            $newKeywordsCount = 0;
-            $updatedKeywordsCount = 0;
 
-            DB::transaction(function () use ($keywordData &$newKeywordsCount, &$updatedKeywordsCount) {
+
+            DB::transaction(function () use ($keywordData, &$newKeywordsCount, &$updatedKeywordsCount, $bar) {
                 $result = DB::table('keywords')->upsert($keywordData, 
                     ['name'], 
                     [
@@ -75,8 +82,14 @@ class ImportKeywords extends Command
                         'customer_id'
                     ]
                 );
-                $newKeywordsCount += $result['new'];
-                $updatedKeywordsCount += $result['updated'];
+ 
+                $newKeywordsCount += $result;
+                $updatedKeywordsCount += $result;
+ 
+                unset($keywordData);
+
+                $bar->setMessage($newKeywordsCount, 'new');
+                $bar->setMessage($updatedKeywordsCount, 'updated');
             });
 
             $currentTime = Carbon::now();
@@ -92,6 +105,8 @@ class ImportKeywords extends Command
         $bar->finish();
         
         $this->info("\nKeywords import completed!");
+
+        $this->comment("Keywords processed: {$totalKeywords}");
         $this->comment("New Keywords: {$newKeywordsCount}");
         $this->comment("Updated Keywords: {$updatedKeywordsCount}");
 
